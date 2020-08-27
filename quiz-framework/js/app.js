@@ -1,6 +1,7 @@
 const questionNo = document.querySelector(".question-number");
 const questionText = document.querySelector(".question-text");
 const optionContainer = document.querySelector(".option-container");
+const explainText = document.querySelector(".explain-text");
 const answerIndicatorContainer = document.querySelector(".answer-indicator");
 const homeBox = document.querySelector(".home-box");
 const quizBox = document.querySelector(".quiz-box");
@@ -16,8 +17,8 @@ let attempt = 0;
 
 // push the questions into availableQuestions Array
 function setAvailableQuestions() {
-    const totalQuestion = quiz.length;
-    for (let i = 0; i < totalQuestion; i++) {
+    const totalQuestion = 5;
+    for (let i = 0; i < quiz.length; i++) {
         availableQuestions.push(quiz[i])
     }
     //console.log(availableQuestions)
@@ -25,8 +26,9 @@ function setAvailableQuestions() {
 
 // set question number and question and options
 function getNewQuestion() {
+    explainText.innerHTML = '';
     // set question number
-    questionNo.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
+    questionNo.innerHTML = "Question " + (questionCounter + 1) + " of 5";
     // set question text
     // get random question
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)]
@@ -38,6 +40,7 @@ function getNewQuestion() {
     const index1 = availableQuestions.indexOf(questionIndex);
     // remove the 'questionIndex' from the availableQuestion Array so that the question does not repeat
     availableQuestions.splice(index1, 1);
+    console.log(availableQuestions)
 
     // set options
     // get the length of options
@@ -80,6 +83,7 @@ function getResult(element) {
         updateAnswerIndicator("correct");
         correctAnswers++;
         console.log("correct:" + correctAnswers)
+        explainText.innerHTML = "You've got the correct one! " + currentQuestion.explain;
     }
     else {
         // set the red color to the wrong answer
@@ -94,6 +98,7 @@ function getResult(element) {
                 optionContainer.children[i].classList.add("correct");
             }
         }
+        explainText.innerHTML = "Oops give it another try next time! " + currentQuestion.explain;
     }
     attempt++;
     unclickableOption();
@@ -111,7 +116,7 @@ function unclickableOption() {
 
 function answerIndicator() {
     answerIndicatorContainer.innerHTML = '';
-    const totalQuestion = quiz.length;
+    const totalQuestion = 5;
     for (let i = 0; i < totalQuestion; i++) {
         const indicator = document.createElement("div");
         answerIndicatorContainer.appendChild(indicator);
@@ -124,12 +129,25 @@ function updateAnswerIndicator(markType) {
 }
 
 function next() {
-    if (questionCounter == quiz.length) {
+    if (questionCounter == 5) {
         console.log("quiz over");
         quizOver();
     }
     else {
         getNewQuestion();
+    }
+}
+
+function back() {
+    if (questionCounter == 1){
+        // hide quiz box
+        quizBox.classList.add("hide");
+        // show home box
+        homeBox.classList.remove("hide");
+        resetQuiz();
+    }
+    else {
+        
 
     }
 }
@@ -141,18 +159,17 @@ function quizOver() {
     resultBox.classList.remove("hide");
     quizResult();
 
-
 }
 
 // get the results
 function quizResult() {
-    resultBox.querySelector(".total-question").innerHTML = quiz.length;
+    resultBox.querySelector(".total-question").innerHTML = 5;
     resultBox.querySelector(".total-attempt").innerHTML = attempt;
     resultBox.querySelector(".total-correct").innerHTML = correctAnswers;
     resultBox.querySelector(".total-wrong").innerHTML = attempt - correctAnswers;
-    const percentage = (correctAnswers / quiz.length) * 100;
+    const percentage = (correctAnswers / 5) * 100;
     resultBox.querySelector(".percentage").innerHTML = percentage.toFixed(2) + "%";
-    resultBox.querySelector(".total-score").innerHTML = correctAnswers + " / " + quiz.length;
+    resultBox.querySelector(".total-score").innerHTML = correctAnswers + " / " + 5;
 
 }
 
@@ -198,5 +215,5 @@ function startQuiz(){
 }
 
 window.onload = function (){
-    homeBox.querySelector(".total-questions").innerHTML = quiz.length;
+    homeBox.querySelector(".total-questions").innerHTML = 5;
 }
