@@ -3,7 +3,7 @@
 body {
     margin: 0;
     font-size: 16px;
-    background-color: #009688;
+    background-color: #b88862;
 }
 
 *{
@@ -72,7 +72,7 @@ body {
 
 .btn{
     padding: 15px 45px;
-    background-color: #009688;
+    background-color: #b88862;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -94,7 +94,7 @@ body {
 
 .quiz-box .question-number{
     font-size: 18px;
-    color: #009688;
+    color: #b88862;
     font-weight: 600;
     border-bottom: 1px solid #cccccc; 
     padding-bottom: 10px;
@@ -191,6 +191,10 @@ body {
     color: #ffffff;
 }
 
+.quiz-box .explain-text{
+    font-size: 18px;
+}
+
 .quiz-box .btn{
     margin: 15px 0;
 }
@@ -239,7 +243,7 @@ body {
 .result-box h1{
     font-size: 36px;
     line-height: 42px;
-    color: #009688;
+    color: #b88862;
 }
 
 .result-box table{

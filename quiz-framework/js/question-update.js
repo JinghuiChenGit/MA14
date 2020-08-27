@@ -1,6 +1,6 @@
 const quiz = [
     {
-        q:"It is not important to save water because there is so much of it on Earth",
+        q:"It is not important to save water because there is so much of it on Earth.",
         options:["True","False"],
         answer:1,
         explain: "75 percent of the earth's surface is water! However, most of it is salt water so you can't drink it. Less than 1% of the water on earth can be used by people! It is therefore very important to save the water."

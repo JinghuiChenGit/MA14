@@ -14,8 +14,8 @@
 <body>
 
 	<div class ="home-box">
-		<h3>Instruction:</h3>
-		<p>Total number of questions: <span class="total-questions"></span></p>
+		<h3>Instruction</h3>
+		<p>You will need to answer <span class="total-questions"></span> questions about how to protect the water!</p>
 		<button type="button" class="btn" onclick="startQuiz()">Start Quiz</button>
 	</div>
 
@@ -30,13 +30,9 @@
 		</div>
 		<div class="explain-text">
 		</div>
-		<div class="next-back-btn" style="display: inline;">
-			<div class="next-question-btn" style="float: left;">
-				<button type="button" class="btn" onclick="next()">Next</button>
-			</div>
-			<div class="back-question-btn" style="float: right;">
-				<button type="button" class="btn" onclick="back()">Back</button>
-			</div>
+
+		<div class="next-question-btn" style="float: left;">
+			<button id="nextbtn" type="button" class="btn" onclick="next()" style="visibility: hidden;">Next</button>
 		</div>
 		<div class="answer-indicator">
 			

@@ -26,6 +26,7 @@ function setAvailableQuestions() {
 
 // set question number and question and options
 function getNewQuestion() {
+    document.getElementById("nextbtn").style.visibility = "hidden";
     explainText.innerHTML = '';
     // set question number
     questionNo.innerHTML = "Question " + (questionCounter + 1) + " of 5";
@@ -83,7 +84,9 @@ function getResult(element) {
         updateAnswerIndicator("correct");
         correctAnswers++;
         console.log("correct:" + correctAnswers)
-        explainText.innerHTML = "You've got the correct one! " + currentQuestion.explain;
+        explainText.innerHTML = "You've got the correct one!<br>" + currentQuestion.explain;
+        // show next button
+        document.getElementById("nextbtn").style.visibility = "visible";
     }
     else {
         // set the red color to the wrong answer
@@ -98,7 +101,9 @@ function getResult(element) {
                 optionContainer.children[i].classList.add("correct");
             }
         }
-        explainText.innerHTML = "Oops give it another try next time! " + currentQuestion.explain;
+        explainText.innerHTML = "Oops give it another try next time!<br>" + currentQuestion.explain;
+        // show next button
+        document.getElementById("nextbtn").style.visibility = "visible";
     }
     attempt++;
     unclickableOption();
