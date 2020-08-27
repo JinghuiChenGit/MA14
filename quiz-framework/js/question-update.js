@@ -27,7 +27,7 @@ const quiz = [
     {
         q:"Where does majority of plastic waste end up?",
         options:["Oceans","Landfills","Recycled"],
-        answer:1,
+        answer:0,
         explain: "While some of the pastic waste does end up in landfills and recycling centers, most of it reaches the ocean. This is because of deliberate dumoing of garbage in waterways, simple littering and mistakes in  disposing of waste!"
     }
 ]
