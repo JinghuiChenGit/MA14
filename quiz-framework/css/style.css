@@ -85,11 +85,12 @@ body {
 .quiz-box .question-number,
 .quiz-box .question-text,
 .quiz-box .option-container,
-.quiz-box .next-question-btn,
 .quiz-box .answer-indicator{
     width: 100%;
     float: left;
 }
+
+
 
 .quiz-box .question-number{
     font-size: 18px;
@@ -125,11 +126,15 @@ body {
     border-radius: 5px;
     margin-bottom: 10px;
     cursor: pointer;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     opacity: 0;
     animation: fadeIn 0.3s ease forwards;
     position: relative;
     overflow: hidden;
+}
+
+.quiz-box .option-container .option::first-letter{
+    text-transform: capitalize;
 }
 
 @keyframes fadeIn {
