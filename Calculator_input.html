@@ -1,0 +1,144 @@
+<html> 
+<head> 
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+        
+        function myFunction() 
+        {
+            var a1 = document.getElementById("A1");               
+            var a2 = document.getElementById("A2");    
+            var a3 = document.getElementById("A3");  
+            var a4 = document.getElementById("A4");
+            var toilet = parseInt(a1.value)*3.83;
+            var tap = parseInt(a2.value)*2.2925;
+            var shower = parseInt(a3.value)*parseInt(a3.value)*11.43;
+            var outside = 50;
+            var total = toilet + tap + shower;
+
+            var chart = new CanvasJS.Chart("chartContainer",
+          {
+            title:{
+              text: "Personal water consumption",
+              fontFamily: "Impact",
+              fontWeight: "normal"
+            },
+      
+            data: [
+            {
+              //startAngle: 45,
+             indexLabelFontSize: 20,
+             indexLabelFontFamily: "Toilet usage",
+             indexLabelFontColor: "Tap usage",
+             indexLabelLineColor: "Shower usage",
+             indexLabelPlacement: "Outside usage",
+             type: "doughnut",
+             showInLegend: true,
+             dataPoints: [
+             {  y:toilet/total, indexLabel: "Toilet 53%" },
+             {  y:tap/total, indexLabel: "Tap 35%" },
+             {  y:shower/total, indexLabel: "Shower 7%" },
+             {  y:outside/total,  indexLabel: "Outside 2%" }
+             ]
+           }
+           ]
+         });
+      
+          chart.render();
+        }
+        </script>
+        
+    </head>
+
+<body> 
+    <link rel="stylesheet" href="Calculation.css">
+    
+<div>
+
+    <h1 style="text-align: center"> Please enter you personal water usage habits </h1>           
+    <div>  
+          
+        <p>How many times you use toilet per day? <input type="text" size=65 name="A1" id = "A1"> </p><br>        
+        <p> How many times you use tap per day? <input type="text" size=65 name="A2" id = "A2">  </p><br> 
+        <p>How long do you take a shower per times? <input type="text" size=65 name="A3" id = "A3">  </p><br> 
+        <p>How many times you take a shower per day? <input type="text" size=65 name="A4" id = "A4"> </p><br> 
+ 
+               
+        <p>Do you hve a gardon in your home?    
+            <select type="text" value="" name="Gardon"> 
+                <option>Yes</option> 
+                <option>No</option>  
+            </select></p><br><br>  
+        <p>
+            <input type="submit" value="Submit" name="Submit">      
+            <input type="reset" value="Reset" name="Reset">   
+        </p> 
+        <button id="form_button" onclick="myFunction()">Try it</button>
+        <p id = "output"></p>    
+        <script> 
+            function GEEKFORGEEKS()                                    
+            { 
+                var a1 = document.forms["RegForm"]["A1"];               
+                var a2 = document.forms["RegForm"]["A2"];    
+                var a3 = document.forms["RegForm"]["A3"];  
+                var a4 = document.forms["RegForm"]["A4"];  
+               
+                if (a1.value == "")                                  
+                { 
+                    window.alert("Please enter your toilet time."); 
+                    a1.focus(); 
+                    return false; 
+                } 
+               
+                if (a2.value == "")                               
+                { 
+                    window.alert("Please enter your tap time."); 
+                    a2.focus(); 
+                    return false; 
+                } 
+                   
+                if (a3.value == "")                                   
+                { 
+                    window.alert("Please enter your shower minutes."); 
+                    a3.focus(); 
+                    return false; 
+                } 
+               
+                if (a4.value == "")                           
+                { 
+                    window.alert("Please enter your shower times."); 
+                    a4.focus(); 
+                    return false; 
+                } 
+            } 
+            function myFunction() 
+            {            
+                var a1 = document.getElementById("A1");               
+                var a2 = document.getElementById("A2");    
+                var a3 = document.getElementById("A3");  
+                var a4 = document.getElementById("A4");  
+                var inputOne = parseInt((a1.value)*3.83 + (a2.value)*2.2925 + (a3.value)*(a4.value)*11.43);
+                var inputTwo = 155;
+                var result;
+                if (inputOne <= inputTwo)
+                {
+                    result = "Your water usage is " + inputOne + "L" + " Which is less than target 155L/day! You have a good water usage habits, keep it!";
+                    document.getElementById("output").style.color = 'Green'
+
+                }
+                else
+                {
+                    result = "Your water usage is " + inputOne + "L" + " Which is greater than target 155L/day! please go to the tips and try to reduce your water usage!";
+                    document.getElementById("output").style.color = 'Red'
+
+                }
+                document.getElementById("output").innerHTML=result;
+            }
+                
+            
+            </script>        
+    </div>
+
+    <div id="chartContainer" style="height: 300px; width: 100%;">
+    </div>
+ 
+    </body>
