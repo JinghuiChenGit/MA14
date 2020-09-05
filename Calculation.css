@@ -1,0 +1,72 @@
+body{
+    background-image: url('stellrweb-djb1whucfBY-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+    /*css of interface*/
+GEEKFORGEEKS {                                                
+    margin-right: 70px; 
+    font-weight: bold ; 
+    float: right; 
+    clear: right; 
+    width: 100px; 
+    text-align: right; 
+    margin-right: 10px; 
+    font-family:sans-serif,bold, Arial, Helvetica; 
+    font-size:14px; 
+} 
+       
+div {  
+    position:relative;
+	left:300px;
+    box-sizing: border-box; 
+    width: 100%;  
+    float: left; 
+    align-content: left; 
+    align-items: left; 
+}    
+form {                                         
+margin: 0 auto; 
+width: 600px; 
+}
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
