@@ -1,0 +1,98 @@
+<html> 
+<head> 
+<style> 
+    GEEKFORGEEKS {                                         
+        margin-left: 70px; 
+        font-weight: bold ; 
+        float: left; 
+        clear: left; 
+        width: 100px; 
+        text-align: left; 
+        margin-right: 10px; 
+        font-family:sans-serif,bold, Arial, Helvetica; 
+        font-size:14px; 
+    } 
+       
+    div {  
+        box-sizing: border-box; 
+        width: 100%; 
+        border: 100px solid black; 
+        float: left; 
+        align-content: center; 
+        align-items: center; 
+    } 
+       
+    form {                                         
+        margin: 0 auto; 
+        width: 600px; 
+    }</style></head>
+<body> 
+    <h1 style="text-align: center"> Please enter you personal water usage habits </h1>           
+    <form name="RegForm" action="" onsubmit="return GEEKFORGEEKS()" method="post">  
+          
+        <p>How many times you use toilet per day? <input type="text" size=65 name="A1"> </p><br>        
+        <p> How many times you use tap per day? <input type="text" size=65 name="A2">  </p><br> 
+        <p>How long do you take a shower per times? <input type="text" size=65 name="A3">  </p><br> 
+        <p>How many times you take a shower per day? <input type="text" size=65 name="A4"> </p><br> 
+ 
+               
+        <p>Do you hve a gardon in your home?    
+            <select type="text" value="" name="Gardon"> 
+                <option>Yes</option> 
+                <option>No</option>  
+            </select></p><br><br>  
+        <p>
+            <input type="submit" value="More Details" name="Submit">      
+            <input type="reset" value="Reset" name="Reset">   
+        </p>  
+        <label for="username">Your total water usage per day: </label>
+        <input type='text' id='d'disabled> 
+        <button id="form_button" onclick="myFunction()">Try it</button>
+        <script> 
+            function GEEKFORGEEKS()                                    
+            { 
+                var a1 = document.forms["RegForm"]["A1"];               
+                var a2 = document.forms["RegForm"]["A2"];    
+                var a3 = document.forms["RegForm"]["A3"];  
+                var a4 = document.forms["RegForm"]["A4"];  
+               
+                if (a1.value == "")                                  
+                { 
+                    window.alert("Please enter your toilet time."); 
+                    a1.focus(); 
+                    return false; 
+                } 
+               
+                if (a2.value == "")                               
+                { 
+                    window.alert("Please enter your tap time."); 
+                    a2.focus(); 
+                    return false; 
+                } 
+                   
+                if (a3.value == "")                                   
+                { 
+                    window.alert("Please enter your shower minutes."); 
+                    a3.focus(); 
+                    return false; 
+                } 
+               
+                if (a4.value == "")                           
+                { 
+                    window.alert("Please enter your shower times."); 
+                    a4.focus(); 
+                    return false; 
+                } 
+            } 
+            function myFunction() 
+            {            
+                var a1 = document.forms["RegForm"]["A1"];               
+                var a2 = document.forms["RegForm"]["A2"];    
+                var a3 = document.forms["RegForm"]["A3"];  
+                var a4 = document.forms["RegForm"]["A4"];  
+                var sd  = parseInt(a1.value)*3.83 + (a2.value)*2.2925 +(a3.value)*parseInt(a4.value)*11.43+ "L";
+                d.value = sd;
+            }
+            </script>        
+    </form> 
+    </body>
