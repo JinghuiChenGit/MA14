@@ -6,4 +6,4 @@ We are currently building an educational website for students aged 10 to 16. The
 This a web application developed by visual studio 2019 in mvc framework with C# language.
 You can dowload the zip file and unzip import the project on visual studio.
 The website is now accessing a cloud database own by us. To run the website correctly you have to change the database to your own database.
-The configuration file is named Web.config. What you need to do is replace the "<connectionStrings>". 
+The configuration file is named Web.config. What you need to do is replace the "connectionStrings". 
