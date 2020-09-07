@@ -37,7 +37,7 @@ const quiz = [
         explain: "Litter can be carried by rainwater and wind to the lakes and rivers which harms the water catchments. It will then float to the ocean as well!"
     },
     {
-        q:"Which option(s) below that you can do would help save the ocean from plastics?",
+        q:"Which action(s) below would help save the ocean from plastics?",
         options:["Sorting the recycled plastics and putting them in recycle bins","Avoiding flushing sanitary products or anything except toilet paper down toilets","Putting the trash in the bin", "All the options are correct."],
         answer:3,
         explain: "We can do so many things to help the ocean! Recycled plastics can end up being in the landfill if we don't put them in recycle bins and is often blow away to the ocean. Any sanitary products except flushable toiler paper can be missed during the water treatment process and travel to the ocean. Putting the trash in the bin is always an option to protect the environment in general. "

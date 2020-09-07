@@ -70,6 +70,23 @@ body {
     margin-top: 20px;
 }
 
+a {
+  text-decoration: underline;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.home-box .previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+
 .btn{
     padding: 15px 45px;
     background-color: #b88862;

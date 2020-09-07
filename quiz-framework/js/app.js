@@ -198,8 +198,11 @@ function goToHome(){
     // TEMPORARY SHOW THE INSTRUCTION PAGE - NEEDS TO GO BACK TO QUIZ HOME ON MAIN WEBSITE
     // hide result box 
     resultSection.classList.add("hide");
+    // hide quiz box
+    quizSection.classList.add("hide");
     // show home box
     homeSection.classList.remove("hide");
+    
     resetQuiz();
 }
 
