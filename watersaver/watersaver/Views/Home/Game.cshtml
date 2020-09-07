@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <title>Taps</title>
+   
+    <link href="~/Content/wireframe.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/qstyle.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<link href="~/Content/game.css" rel="stylesheet" />
+
+    <div id="container">
+
+        <div id="score_help">
+            Score:
+            <span id="score">0</span>  Life:
+            <span id="life"></span> 
+            <span id="#score_help">Demo v1</span>
+        </div>
+
+
+
+        <div id="tap1" class="tap"></div>
+        <div id="tap2" class="tap"></div>
+        <div id="tap3" class="tap"></div>
+
+
+        <div id="water1" class="water" data-onGound='1'></div>
+        <div id="water2" class="water" data-onGound='2'></div>
+        <div id="water3" class="water" data-onGound='3'></div>
+
+        <div id="onGournd1" class="onGournd"></div>
+        <div id="onGournd2" class="onGournd"></div>
+        <div id="onGournd3" class="onGournd"></div>
+
+        <div id="glass">
+           
+        </div>
+
+        <div id="floor"></div>
+
+        <button id="restart">Remember not to waste any water<span id="score"></span></button>
+        <button id="start" onclick="hide()">start</button>
+
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/collision_detection.js"></script>
+    <script src="~/Scripts/variables.js"></script>
+    
+    <script src="~/Scripts/functions.js"></script>
+    <script src="~/Scripts/script.js"></script>
+ 
+
+
+

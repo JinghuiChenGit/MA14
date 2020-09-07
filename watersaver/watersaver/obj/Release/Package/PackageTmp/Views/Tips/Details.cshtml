@@ -1,0 +1,27 @@
+﻿@model watersaver.Models.Tip
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>   @Html.DisplayFor(model => model.Name)</h1>
+<div>
+  
+    <div class="jumbotron">
+      
+        @Html.DisplayFor(model => model.Addition)<br>
+        @Html.DisplayFor(model => model.Description)<br>
+        <img class="img" style="width:500px; height:500px " src="@Url.Content("~/Uploads/"+ Model.Path )" />
+    </div>
+       
+
+
+
+
+
+</div>
+<p>
+  
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,312 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/wireframe.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/qstyle.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script>
+
+        // set the dimensions and margins of the graph
+        var width = 450
+        height = 450
+        margin = 40
+
+        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+        var radius = Math.min(width, height) / 2 - margin
+
+        // append the svg object to the div called 'my_dataviz'
+        var svg = d3.select("#my_dataviz")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        // Create dummy data
+        var data = { a: 9, b: 20, c: 30, d: 8, e: 12 }
+
+        // set the color scale
+        var color = d3.scaleOrdinal()
+            .domain(data)
+            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
+
+        // Compute the position of each group on the pie:
+        var pie = d3.pie()
+            .value(function (d) { return d.value; })
+        var data_ready = pie(d3.entries(data))
+
+        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+        svg
+            .selectAll('whatever')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', d3.arc()
+                .innerRadius(100)         // This is the size of the donut hole
+                .outerRadius(radius)
+            )
+            .attr('fill', function (d) { return (color(d.data.key)) })
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.7)
+
+    </script>
+    
+</head>
+<style>
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+
+</style>
+
+
+
+<body>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content ">
+            <div class="col-md-7">
+            <span class="close">&times;</span>
+            <p>The water you consumed perday..</p>
+            <p>For toilet</p>
+            <input type='text' id='a' disabled />
+            <p>For tap</p>
+            <input type='text' id='b' disabled />
+            <p>For shower</p>
+            <input type='text' id='c' disabled />
+            <p>Total</p>
+            <input type='text' id='d' disabled>
+                </div>
+            <div id="my_dataviz"></div>
+        </div>
+
+        
+       
+    </div>
+
+    <div class="d-flex h-100 align-items-center" style=" background-image: url('../Assets/aaron-burden-dXYE1d08BiY-unsplash.jpg');
+        background-position: center center;
+        background-size: cover;
+   ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7" style="">
+                    <h1 class="display-4" id="home_title" style=""><b>Smart solutions&nbsp;<br>for big problems</b></h1>
+                </div>
+                <div class="col-md-5" style="        padding: 20px;
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        animation: fadeInRight 1s ease;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+">
+                    <div class="" id="myform">
+
+                        <h3 class=" font-weight-bold">How much water you use per day</h3>
+                        <div class="form-group">
+                            <label>How many times you use toilet per day?</label>
+                            <input class="form-control" type="text" name="x1" id="x1" placeholder="Times" required="required">
+
+                        </div>
+                        <div class="form-group">
+                            <label>How many times you use tap per day?</label>
+                            <input type="text" class="form-control" name="x2" id="x2" placeholder="Times" required="required">
+
+                        </div>
+                        <div class="form-group">
+                            <label>How long do you take a shower per times?</label>
+                            <input class="form-control" type="text" name="x3" id="x3" placeholder="How long(min)" required="required">
+                            <label>How many times you take a shower per day?</label>
+                            <input class="form-control" type="text" name="n" id="n" placeholder="Times" />
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="button" onclick="myFunction()" style="">Submit</button>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="p-4 col-md-8">
+                    <div class="blockquote text-muted">
+                        <h2 style="font-size: xx-large;font-weight: bold;color:black">The importance of water catchment protection</h2>
+
+                        <p class="lead " style="font-size: 21px; font-weight: 200; color:black">
+                            Protecting water catchments is to protect ourselves as well as our family and friends!
+                            Do you know that the animals that live under sea or rivers will mistake plastics as their food? After they consume the plastics, it will affect humans through the food chain.
+                            Do you know that anything we put down the drains can stay in our water or others’ water? Some plastics cannot be 100% treated during the water treatment process.
+                            Take care of the water catchment - Take care of ourselves!
+
+                        </p>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4 align-self-center" style="">
+                    <img class="img-fluid d-block w-100" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); animation: fadeInRight 1s ease;" src="~/Assets/elia-pellegrini-ds6t_pcigxg-unsplash.jpg">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="py-5 bg-primary">
+        <div class="container" style="color:black;">
+            <div class="row">
+                <div class="p-4 col-lg-8" style="">
+                    <div class="container">
+                        <h2 class="col-12  col-md-6" style="font-weight: bold; font-size: xx-large; padding-top: 50px;"> To saving our water</h2>
+                        <div class="col-12  col-md-6" style="font-size: large; ">
+
+                            <p style="font-size: 21px; font-weight: 200;">
+                                TAKE YOUR ACTION NOW!<br> Do you know that plastics cover 88% of the ocean’s surface and 80% trash that floats to the ocean come from our land sources? The ocean needs your help NOW!
+                                Do you know that the water source on earth is limited and there are some places people cannot have access to clean and fresh water? Every drop of water counts. Together we become Water Savers!
+                                Small actions can make a huge impact.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class=" body-content">
+        <div class="pricingTable">
+            <h2 class="col-12  col-md-12" style="font-weight: bold; font-size: xx-large; padding-top: 50px;text-align: center;"> To saving our water</h2>
+            
+            <p class="lead" style="text-align: center;font-size: 21px; font-weight: 200;">Everyone is responsible for protecting our water</p>
+            <ul class="pricingTable-firstTable">
+
+                <li class="pricingTable-firstTable_table">
+                    <img class="firstTable_table_logo" src="~/Assets/iconquiz.png" style="margin: 15px auto;" />
+                    <h1 class="pricingTable-firstTable_table__header">Quiz</h1>
+                    <div>
+                        Let’s test your knowledge of water conservation
+                    </div><br>
+                    <a href="~/Home/Quiz" class="btn btn-primary btn-lg waterbtn" style="border-radius: 20px;  padding: 5px 20px; margin:5px; border-color: #ff8d1e;">Learn more &raquo;</a>
+                </li>
+
+                <li class="pricingTable-firstTable_table">
+                    <img class="firstTable_table_logo" src="~/Assets/logogame.png" style="margin: 15px auto;" />
+                    <h1 class="pricingTable-firstTable_table__header">Game</h1>
+                    <div class="pricingTable-firstTable_table__options">
+                        This is a funny mini game
+                    </div><br>
+                    <a href="~/Home/Game" class="btn btn-primary btn-lg waterbtn" style="border-radius: 20px;  padding: 5px 20px; margin:5px; border-color: #ff8d1e;">Learn more &raquo;</a>
+
+                </li>
+                <li class="pricingTable-firstTable_table">
+                    <img class="firstTable_table_logo" src="~/Assets/logotips.png" style="margin: 15px auto;" />
+                    <h1 class="pricingTable-firstTable_table__header">Tips</h1>
+                    <div class="pricingTable-firstTable_table__options">
+                        Come to learn more tips on water protection
+                    </div><br>
+                    <a href="~/Tips" class="btn btn-primary btn-lg waterbtn" style="border-radius: 20px;  padding: 5px 20px; margin:5px; border-color: #ff8d1e;">Learn more &raquo;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("button");
+        var span = document.getElementsByClassName("close")[0];
+        var x1 = document.getElementById("x1");
+        var x2 = document.getElementById("x2");
+        var x3 = document.getElementById("x3");
+        var n = document.getElementById("n");
+        var regex = /[0-9]|\./;
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function myFunction() {
+
+            if (regex.test(x1.value) && regex.test(x2.value) && regex.test(x3.value) && regex.test(n.value)) {
+                modal.style.display = "block";
+                var sd = parseInt(x1.value) * 3.83 + (x2.value) * 2.2925 + (x3.value) * parseInt(n.value) * 11.43 + "L";
+                d.value = sd;
+                a.value = parseInt(x1.value) * 3.83 + " L";
+                b.value = parseInt(x2.value) * 2.2925 + " L";
+                c.value = parseInt(x3.value) * parseInt(n.value) * 11.43 + " L";
+            }
+        }
+
+
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+</body>

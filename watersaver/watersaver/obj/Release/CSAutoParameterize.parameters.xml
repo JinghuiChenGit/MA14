@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DatabaseEntities-Web.config Connection String" description="DatabaseEntities Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:watersaver.database.windows.net,1433;Initial Catalog=waterdata;Persist Security Info=False;User ID=Ma14;Password=Monahs14;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\83549\\Desktop\\watersaver\\watersaver\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DatabaseEntities']/@connectionString" />
+  </parameter>
+</parameters>
