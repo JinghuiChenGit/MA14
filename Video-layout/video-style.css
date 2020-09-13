@@ -1,14 +1,13 @@
-
-
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background: #000;
+    margin: 0;
+    background: #000 !important;
 }
 
 section {
@@ -19,22 +18,56 @@ section {
     overflow: hidden;
 }
 
+@media screen and (max-width: 540px) and (max-width: 800px) {
+    section {
+        height: 30vh;
+    }
+}
+
+@media screen and (min-width: 540px) and (max-width: 800px) {
+    section {
+        height: 40vh;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1180px) {
+    section {
+        height: 50vh;
+    }
+}
+
 section video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    pointer-events: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 540px) {
+    section video {
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 540px) and (max-width: 800px) {
+    section video {
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1180px) {
+    section video {
+        height: auto;
+    }
 }
 
 section .video-list {
-    position: absolute;
-    bottom: 40px;
+    position: relative;
     justify-content: center;
     align-items: center;
-    display: inline;
     margin: 0px !important;
     padding: 0px !important;
 }
@@ -47,7 +80,12 @@ section .video-list li {
     padding: 3px 3px 0;
     opacity: 0.7;
     transition: 0.5s;
+}
 
+@media screen and (max-width: 540px) {
+    section .video-list li img {
+        display: none;
+    }
 }
 
 section .video-list li:hover {
@@ -61,16 +99,45 @@ section .video-list li img {
 
 section .video-list li img:hover {
     width: 200px;
-
 }
 
-section h2 {
-    position: relative;
-    color: bisque;
-    font-size: 3em;
-    text-align: justify;
-    margin: 5%;
+section h1 {
+    font-family: 'Libre Baskerville', serif !important;
+    font-size: 100px !important;
+}
 
+section .content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+@media screen and (max-width: 540px) and (max-width: 800px) {
+    section .content {
+        font-size: 60% !important;
+    }
+}
+
+@media screen and (min-width: 540px) and (max-width: 800px) {
+    section .content {
+        font-size: 80% !important;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1180px) {
+    section .content {
+        font-size: 90% !important;
+    }
 }
 
 section p {
@@ -81,15 +148,36 @@ section p {
     margin: 5%;
 }
 
-#textOnVideo {
-    position:absolute;
-     top:30%;
-     left:20%;
-     z-index:1;
+#vid-control-btn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
 }
-   
-#video-text {
-     color: white;
-     font-size: 20px;
-     align-self: center;
+
+#vid-control-btn:hover {
+    background: #ddd;
+    color: black;
+}
+
+h2 {
+    position: relative;
+    padding: 0;
+    color: bisque;
+    font-size: 3em;
+    text-align: center;
+    font-family: 'Lora', serif;
+    padding: 5%;
+}
+
+p {
+    position: relative;
+    color: burlywood;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 2em !important;
+    margin-bottom: 2em !important;
 }
