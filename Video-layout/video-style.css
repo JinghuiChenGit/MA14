@@ -181,3 +181,11 @@ p {
     margin-top: 2em !important;
     margin-bottom: 2em !important;
 }
+
+.carousel-control-prev:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.carousel-control-next:hover {
+    background-color: rgba(0,0,0,0.5);
+}
