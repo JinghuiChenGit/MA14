@@ -49,10 +49,21 @@ namespace watersaver.Controllers
         }
 
 
-        public ActionResult Map()
+        public ActionResult MoreInfo()
         {
 
-            ViewBag.Message = "Map page.";
+            ViewBag.Message = "More information page.";
+
+            return View();
+
+
+        }
+
+
+        public ActionResult Video()
+        {
+
+            ViewBag.Message = "video page.";
 
             return View();
 

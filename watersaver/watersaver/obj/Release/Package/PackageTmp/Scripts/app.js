@@ -175,6 +175,19 @@ function quizResult() {
     const percentage = (correctAnswers / 5) * 100;
     resultSection.querySelector(".percentage").innerHTML = percentage.toFixed(2) + "%";
     resultSection.querySelector(".total-score").innerHTML = correctAnswers + " / " + 5;
+    if (correctAnswers <= 2) {
+        resultSection.querySelector(".comment").innerHTML = "Oh no :( Let's try again next time!"
+    }
+    else if (correctAnswers == 3) {
+        resultSection.querySelector(".comment").innerHTML = "You've tried your best! Let's make it perfect next time!"
+    } 
+    else if (correctAnswers == 4) {
+        resultSection.querySelector(".comment").innerHTML = "Good job!"
+    } 
+    else if (correctAnswers == 5) {
+        resultSection.querySelector(".comment").innerHTML = "Hurray! You've made a perfect score!"
+    }
+
 
 }
 
@@ -198,8 +211,11 @@ function goToHome(){
     // TEMPORARY SHOW THE INSTRUCTION PAGE - NEEDS TO GO BACK TO QUIZ HOME ON MAIN WEBSITE
     // hide result box 
     resultSection.classList.add("hide");
+    // hide quiz box
+    quizSection.classList.add("hide");
     // show home box
     homeSection.classList.remove("hide");
+    
     resetQuiz();
 }
 

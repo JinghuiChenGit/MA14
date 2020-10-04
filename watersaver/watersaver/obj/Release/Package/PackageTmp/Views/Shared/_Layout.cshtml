@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - WaterSaver</title>
+    <title>@ViewBag.Title - H2rescueO</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
@@ -28,29 +28,33 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="~/Home" style=" color: white; font-weight: bold; font-size: larger;">
-                    <img src="~/Assets/logo-removebg-preview.png" width="45" alt="" class="d-inline-block align-middle mr-2" />WaterSaver
+
+                    <img src="~/Assets/logo2.png" width="135" alt="" class="d-inline-block align-middle mr-2" />
                 </a>
 
 
             </div>
             <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav pull-right" id="Navbar_Option">
+                <ul class="nav navbar-nav " id="navbar" style="font-weight: 600;">
 
 
                     <li class='@Html.IsActive("Tips", "Index")'>
-                        @Html.ActionLink("Tips", "Index", "Tips")
+                        @Html.ActionLink("Save Our Water", "Index", "Tips")
                     </li>
 
                     <li class='@Html.IsActive("Home", "Quiz")'>
                         @Html.ActionLink("Quiz", "Quiz", "Home")
                     </li>
-
-                    <li class='@Html.IsActive("Home", "Game")'>
-                        @Html.ActionLink("Game", "Game", "Home")
-                    </li>
-
-                    <li class='@Html.IsActive("Home", "Map")'>
-                        @Html.ActionLink("Map", "Map", "Home")
+                    <li class="dropdown show">
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Resources
+                        </a>
+                        <div class="dropdown-menu" style="text-align: center; background-color:#333; " aria-labelledby="dropdownMenuLink">
+   
+                            <a class="dropdown-item" style="color: white;" href="~/Home/Video">Videos</a>
+                            <a class="dropdown-item" style="color: white;" href="~/Home/Game">Game</a>
+                            <a class="dropdown-item" style="color: white;" href="~/Home/MoreInfo">More Information</a>
+                        </div>
                     </li>
 
                     <li class='@Html.IsActive("Home", "About")'>
@@ -92,10 +96,14 @@
                                     <div class="thumb-content"><a href="~/Home">Home</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="~/Home/Game">Game</a></div>
+                                    <div class="thumb-content"><a href="~/Tips">Saver our water</a></div>
                                 </li>
+
                                 <li>
                                     <div class="thumb-content"><a href="~/Home/Quiz">Quiz</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="~/Home/Video">Video</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="~/Home/About">About</a></div>
@@ -119,7 +127,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>&copy; @DateTime.Now.Year - </p>
+                        <p>&copy; @DateTime.Now.Year - CreekTech</p>
                     </div>
                 </div>
             </div>

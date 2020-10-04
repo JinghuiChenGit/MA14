@@ -1,0 +1,388 @@
+﻿@{
+    ViewBag.Title = "More information";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+}
+
+
+
+
+
+<head>
+    <title>More Information</title>
+    <link href="https://fonts.cdnfonts.com/css/komika-hand" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link href="~/Content/wireframe.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/qstyle.css" rel="stylesheet" />
+    <style>
+        .con {
+            padding: 30px !important;
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+    </style>
+
+    <link href="~/Content/Style.css" rel="stylesheet" />
+
+
+    <!-- Font stylesheet -->
+    <link href="https://fonts.cdnfonts.com/css/komika-hand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <!-- Font stylesheet -->
+
+
+
+</head>
+
+<div class="col-12" style="        background-image: url('../Assets/dropcount.jpg');
+        background-position: center center;
+        background-size: cover;
+        padding: 0px;
+        height: 12%;">
+
+    <div class="col-12" style="background-color:rgba(45,45,45,0.3); width:100%; height:100%;">
+        <div class="row">
+            <div class="p-4 col-lg-8" style="color:white;">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<body>
+    <div class="col-12">
+        <h1 class="col-12" style="text-align:center; font-size: xxx-large;font-weight: bold;color:black; font-family:'Komika Hand', sans-serif; color:#348172; margin:60px 0px;">
+            EVERY DROP COUNTS!
+        </h1>
+
+
+        <div class="container con" style="background-color: #cfd8dc; max-width:90%; margin:auto;  border-radius: 15px;display: block;">
+            <p style="font-size:30px; text-align: center;font-weight: 700;">Why do we need to protect water?</p>
+
+            <p style="text-align: justify">
+                The world is stressed for water. Scientists have used data for 167 countries and have predicted the amount of water stress each country is going to face by the year 2040. The stress values shown on the map go from 0 (least stress) to 5 (most stress).
+            </p>
+            <br>
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-7">
+                        <!-- Embedding tableau map showing predicted water stress in countries around the world -->
+                        <div class='tableauPlaceholder' id='viz1600140077812' style='position: relative; width: 100%; height: 500px; overflow: hidden; display: block;"'>
+                            <noscript>
+                                <a href='#'>
+                                    <img alt=' '
+                                         src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wa&#47;WaterStress_16001384383400&#47;Dashboard1&#47;1_rss.png'
+                                         style='border: none' />
+                                </a>
+                            </noscript>
+                            <object class='tableauViz' style='display:none;'>
+                                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                <param name='embed_code_version' value='3' />
+                                <param name='site_root' value='' />
+                                <param name='name' value='WaterStress_16001384383400&#47;Dashboard1' />
+                                <param name='tabs' value='no' />
+                                <param name='toolbar' value='yes' />
+                                <param name='static_image'
+                                       value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wa&#47;WaterStress_16001384383400&#47;Dashboard1&#47;1.png' />
+                                <param name='animate_transition' value='yes' />
+                                <param name='display_static_image' value='yes' />
+                                <param name='display_spinner' value='yes' />
+                                <param name='display_overlay' value='yes' />
+                                <param name='display_count' value='yes' />
+                                <param name='language' value='en-GB' />
+                                <param name='filter' value='publish=yes' />
+                            </object>
+                        </div>
+                        <script type='text/javascript'>
+                            var divElement = document.getElementById('viz1600140077812');
+                            var vizElement = divElement.getElementsByTagName('object')[0];
+                            if (divElement.offsetWidth > 800) {
+                                vizElement.style.minWidth = '420px';
+                                vizElement.style.maxWidth = '650px';
+                                vizElement.style.width = '100%';
+                                vizElement.style.minHeight = '587px';
+                                vizElement.style.maxHeight = '887px';
+                                vizElement.style.height = '900px';
+                            } else if (divElement.offsetWidth > 500) {
+                                vizElement.style.minWidth = '420px';
+                                vizElement.style.maxWidth = '650px';
+                                vizElement.style.width = '100%';
+                                vizElement.style.minHeight = '587px';
+                                vizElement.style.maxHeight = '887px';
+                                vizElement.style.height = "900px";
+                            } else {
+                                vizElement.style.width = '100%';
+                                vizElement.style.height = '727px';
+                            }
+                            var scriptElement = document.createElement('script');
+                            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                        </script>
+
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="jumbotron" style="background-color: white; border-radius: 15px; margin:30px 0px;">
+                            <p style="font-weight :700;">Can you look at the map and see how stressed with respect to water Australia is going to be in 2040? </p>
+                            <span id='a1'></span><br>
+                            <form id="d1">
+                                <input type="radio" name="choice" value="Low"> Low (0-1)<br>
+                                <input type="radio" name="choice" value="Low to Medium"> Low to Medium (1-2)<br>
+                                <input type="radio" name="choice" value="Medium to High"> Medium to High (2-3)<br>
+                                <input type="radio" name="choice" value="High"> High (3-4)<br>
+                                <input type="radio" name="choice" value="Extremely High"> Extremely High (4-5)<br>
+                                <br><input class="btn btn-secondary" type="submit" value="Submit" onclick="validate(choice.value, 'High', 'd1','a1')">
+                            </form>
+                            <script>
+                                var validate = function (valore, rightanswer, form, span) {
+                                    var formname = document.getElementById(form)
+                                    var spanname = document.getElementById(span)
+
+                                    spanname.innerHTML = rightanswer;
+
+                                    if (valore == rightanswer) {
+                                        formname.innerHTML = "<p>That's right! Australia is projected to have a water stress level of 3.436- which is High! We need to make changes to our lifestyles and begin to save water.</p>";
+                                    } else {
+                                        formname.innerHTML = "<p>That's incorrect! Actually, Australia is projected to have a water stress level of 3.436- which is High! We need to make changes to our lifestyles and begin to save water. </p>";
+                                    }
+                                };
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <p style="padding:20px; text-align: justify">
+                It would be an understatement to say that the world is currently facing a severe fresh water shortage. On paper the countries of the world have come together and created ambitious goals for water conservation highlighted in the 7th Goal of the Millennium
+                Development Goals and the 6th goal of the renewed Sustainable Development Goals of the United Nations.
+            </p>
+
+        </div>
+
+        <br>
+        <br>
+        <div class="container con" style="background-color: #cfd8dc; max-width:90%; margin:auto;  border-radius: 15px;display: block;">
+            <p style="font-size:30px; text-align: center;font-weight: 700;"> Did you know? </p>
+
+            <p style="text-align: justify">
+                Droughts have accounted for 5% of natural disasters and it has affected over 1.1 billion people. The death toll has been 22,000, and while resulting in US$100 billion in economic damage between 1995 and 2015. (UNISDR, 2015) Many regions of the
+                world are constantly facing the threat of water shortage owing either to a few years of poor rainfall or even just the mismanagement of resources.
+            </p>
+        </div>
+
+        <br>
+        <br>
+        <div class="container con" style="background-color: #cfd8dc; max-width:90%; margin:auto; border-radius: 15px;display: block;">
+
+            <p style="font-size:30px; text-align: center;font-weight: 700;"> Do we have enough water for everybody? </p>
+            <p style="text-align: justify"> The amount of water available for each person is an interesting statistic. Have a look at the line graph below and try to figure out how we have fared as a country. </p>
+            <br>
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <!-- Embedding tableau workbook that shows water availability -->
+                        <div class='tableauPlaceholder' id='viz1600152227346' style='position: relative; width: 100%; height: 900px; overflow: hidden; display: block;'>
+                            <noscript>
+                                <a href='#'>
+                                    <img alt=' '
+                                         src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pe&#47;PerCapitaWater&#47;Dashboard2&#47;1_rss.png'
+                                         style='border: none' />
+                                </a>
+                            </noscript>
+                            <object class='tableauViz' style='display:none;'>
+                                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                <param name='embed_code_version' value='3' />
+                                <param name='site_root' value='' />
+                                <param name='name' value='PerCapitaWater&#47;Dashboard2' />
+                                <param name='tabs' value='no' />
+                                <param name='toolbar' value='yes' />
+                                <param name='static_image'
+                                       value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pe&#47;PerCapitaWater&#47;Dashboard2&#47;1.png' />
+                                <param name='animate_transition' value='yes' />
+                                <param name='display_static_image' value='yes' />
+                                <param name='display_spinner' value='yes' />
+                                <param name='display_overlay' value='yes' />
+                                <param name='display_count' value='yes' />
+                                <param name='language' value='en-GB' />
+                                <param name='filter' value='publish=yes' />
+                            </object>
+                        </div>
+                        <script type='text/javascript'>
+                            var divElement = document.getElementById('viz1600152227346');
+                            var vizElement = divElement.getElementsByTagName('object')[0];
+                            if (divElement.offsetWidth > 800) {
+                                vizElement.style.minWidth = '420px';
+                                vizElement.style.maxWidth = '650px';
+                                vizElement.style.width = '100%';
+                                vizElement.style.minHeight = '587px';
+                                vizElement.style.maxHeight = '887px';
+                                vizElement.style.height = '900px';
+                            } else if (divElement.offsetWidth > 500) {
+                                vizElement.style.minWidth = '420px';
+                                vizElement.style.maxWidth = '650px';
+                                vizElement.style.width = '100%';
+                                vizElement.style.minHeight = '587px';
+                                vizElement.style.maxHeight = '887px';
+                                vizElement.style.height = '900px';
+                            } else {
+                                vizElement.style.width = '100%';
+                                vizElement.style.height = '727px';
+                            }
+                            var scriptElement = document.createElement('script');
+                            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                        </script>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="jumbotron" style="background-color: white; border-radius: 15px; border-radius: 15px; margin:30px 0px;">
+                            <p style="font-weight :700;"> Do you think the amount of water available per person (per capita) is changing? </p>
+                            <span id='a2'></span><br>
+                            <form id="d2">
+                                <input type="radio" name="choice" value="Yes, Its Decreasing"> Yes, It's Decreasing<br>
+                                <input type="radio" name="choice" value="Yes, Its Increasing"> Yes, It's Increasing<br>
+                                <input type="radio" name="choice" value="No, Its remaining the same"> No, It's remaining the same<br>
+                                <br><input class="btn btn-secondary" type="submit" value="Submit" onclick="validate1(choice.value, 'Yes, Its Decreasing', 'd2','a2')">
+                            </form>
+                            <script>
+                                var validate1 = function (valore, rightanswer, form, span) {
+                                    var formname = document.getElementById(form)
+                                    var spanname = document.getElementById(span)
+
+                                    spanname.innerHTML = rightanswer;
+
+                                    if (valore == rightanswer) {
+                                        formname.innerHTML = "<p>That's right! From 1962 to 2014 there has been a steady decrease in the amount of water available per person in Australia. Also, in Melbourne 18,500 million liters of the main water is used. That is aproximately 7400 olympic sized swimming pools. 95% of this becomes waste water or sewage and currently only 1.5% is recycled. </p>";
+                                    } else {
+                                        formname.innerHTML = "<p>That's incorrect! Actually, from 1962 to 2014 there has been a steady decrease in the amount of water available per person in Australia. Also, in Melbourne 18,500 million liters of the main water is used. That is aproximately 7400 olympic sized swimming pools. 95% of this becomes waste water or sewage and currently only 1.5% is recycled. </p>";
+                                    }
+                                };
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br><br>
+        <div class="container con" style="background-color: #cfd8dc; max-width:90%; margin:auto; border-radius: 15px;display: block;">
+
+            <p style="text-align: justify"> The population of the world is expected to reach 8,000,000,000 (8 billion) in 2023 according to the United Nations. Let's now look at the population and it's growth in Australia from 1962 to 2014. </p>
+            <br>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- Embedding the tableau chart showing population growth!-->
+                        <div class='tableauPlaceholder' id='viz1600152942213' style='position: relative; width: 100%; height: 900px; overflow: hidden; display: block;'>
+                            <noscript>
+                                <a href='#'>
+                                    <img alt=' '
+                                         src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Au&#47;AustraliaPopulation&#47;Dashboard3&#47;1_rss.png'
+                                         style='border: none' />
+                                </a>
+                            </noscript><object class='tableauViz' style='display:none;'>
+                                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                <param name='embed_code_version' value='3' />
+                                <param name='site_root' value='' />
+                                <param name='name' value='AustraliaPopulation&#47;Dashboard3' />
+                                <param name='tabs' value='no' />
+                                <param name='toolbar' value='yes' />
+                                <param name='static_image'
+                                       value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Au&#47;AustraliaPopulation&#47;Dashboard3&#47;1.png' />
+                                <param name='animate_transition' value='yes' />
+                                <param name='display_static_image' value='yes' />
+                                <param name='display_spinner' value='yes' />
+                                <param name='display_overlay' value='yes' />
+                                <param name='display_count' value='yes' />
+                                <param name='language' value='en-GB' />
+                                <param name='filter' value='publish=yes' />
+                            </object>
+                        </div>
+                        <script type='text/javascript'>
+                            var divElement = document.getElementById('viz1600152942213');
+                            var vizElement = divElement.getElementsByTagName('object')[0];
+                            if (divElement.offsetWidth > 800) {
+                                vizElement.style.minWidth = '420px';
+                                vizElement.style.maxWidth = '650px';
+                                vizElement.style.width = '100%';
+                                vizElement.style.minHeight = '587px';
+                                vizElement.style.maxHeight = '887px';
+                                vizElement.style.height = '900px';
+                            } else if (divElement.offsetWidth > 500) {
+                                vizElement.style.minWidth = '420px';
+                                vizElement.style.maxWidth = '650px';
+                                vizElement.style.width = '100%';
+                                vizElement.style.minHeight = '587px';
+                                vizElement.style.maxHeight = '887px';
+                                vizElement.style.height = '900px';
+                            } else {
+                                vizElement.style.width = '100%';
+                                vizElement.style.height = '727px';
+                            }
+                            var scriptElement = document.createElement('script');
+                            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                        </script>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="jumbotron" style="background-color: white; border-radius: 15px;">
+                            <p style="font-weight :700;"> What is the current population of Australia?</p>
+                            <span id='a3'></span><br>
+                            <form id="d3">
+                                <input type="radio" name="choice" value="22.4M"> 22.4M<br>
+                                <input type="radio" name="choice" value="23.5M"> 23.5M<br>
+                                <input type="radio" name="choice" value="25.6M"> 25.6M<br>
+                                <br><input class="btn btn-secondary" type="submit" value="Submit" onclick="validate2(choice.value, '25.6M', 'd3','a3')">
+                            </form>
+                            <script>
+                                var validate2 = function (valore, rightanswer, form, span) {
+                                    var formname = document.getElementById(form)
+                                    var spanname = document.getElementById(span)
+
+                                    spanname.innerHTML = rightanswer;
+
+                                    if (valore == rightanswer) {
+                                        formname.innerHTML = "<p>That's right! The population of Australia is currently 25.6 Million. According to the Australian Bureau of Statistics there is one new person every 2 minutes and 37 seconds! </p>";
+                                    } else {
+                                        formname.innerHTML = "<p>That's incorrect! Actually, the population of Australia is currently 25.6 Million. According to the Australian Bureau of Statistics there is one new person every 2 minutes and 37 seconds! </p>";
+                                    }
+                                };
+                            </script>
+                        </div>
+
+                    </div>
+                    <br>
+                    <br>
+                    <p style="text-align: justify"> There is a strong need for water conservation in Australia today. Our future generations should also be able to have access to clean water for their nutrition and sustainance. Climate change, irratic rainfall and drought situations make matters worse. Also, with the increase in population the amount of water available for each person is steadily decreasing. As citizens we need to actively participate in water conservation and management activities. </p>
+                </div>
+            </div>
+        </div>
+        <br><br>
+
+        <div class="container con" style="background-color: #cfd8dc; max-width:90%; margin-bottom:50px; margin:auto;  border-radius: 15px;display: block;">
+            <p>
+                71% of the Earths surface is covered in water. Thats about 326,000,000,000,000,000,000 gallons in total (that's 326 million trillion gallons). Out of this only 2.5% is available for drinking! And only 1% is easily accessible. Australia occupies 5.6% of the world’s landmass, however we only receive about one per cent of the world’s available freshwater resources. That's really little when you compare it to the 326 million trillion gallons! Therefore, we need to make a concious effort to make a difference! Start saving today!
+            </p>
+        </div>
+    </div>
+
+    <div class="container" style="text-align: right; margin-top:50px; margin-bottom:50px;">
+        <button type="submit" class="btn btn-primary" onclick="location.href='/'; ">Back to Home</button>
+    </div>
+
+</body>

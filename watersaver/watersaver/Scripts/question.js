@@ -1,7 +1,5 @@
 
 // Array of Objects
-
-
 const quiz = [
     {
         q:'Which month comes right before June?',

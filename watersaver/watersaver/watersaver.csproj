@@ -129,11 +129,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TipsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlUtility.cs" />
+    <Compile Include="Models\login.cs" />
     <Compile Include="Models\Tip.cs">
       <DependentUpon>TipsModel.tt</DependentUpon>
     </Compile>
@@ -164,20 +166,44 @@
     <Content Include="Assets\aaron-burden-dXYE1d08BiY-unsplash.jpg" />
     <Content Include="Assets\Alice.jpg" />
     <Content Include="Assets\background-3.jpg" />
+    <Content Include="Assets\book.jpg" />
     <Content Include="Assets\bullseye1.png" />
     <Content Include="Assets\Chen Yuan.jpg" />
     <Content Include="Assets\correct.png" />
+    <Content Include="Assets\dropcount.jpg" />
     <Content Include="Assets\elia-pellegrini-ds6t_pcigxg-unsplash.jpg" />
     <Content Include="Assets\glass.png" />
     <Content Include="Assets\iconquiz.png" />
     <Content Include="Assets\image-asset.jpeg" />
+    <Content Include="Assets\jacek-dylag-Vve7XkiUq_Y-unsplash.jpg" />
     <Content Include="Assets\Jinghui_Selfie.png" />
     <Content Include="Assets\logo-removebg-preview.png" />
+    <Content Include="Assets\logo2.png" />
     <Content Include="Assets\logogame.png" />
     <Content Include="Assets\logotips.png" />
+    <Content Include="Assets\mid.jpg" />
+    <Content Include="Assets\mid2.jpg" />
+    <Content Include="Assets\mrjn-photography-YpZ2cj4s0oo-unsplash.jpg" />
     <Content Include="Assets\nikita.png" />
+    <Content Include="Assets\nikola-radojcic-64Y-4cUlV4w-unsplash.jpg" />
+    <Content Include="Assets\rocket.jpeg" />
+    <Content Include="Assets\rocket.png" />
     <Content Include="Assets\tap.png" />
+    <Content Include="Assets\video\img1.jpg" />
+    <Content Include="Assets\video\img2.jpg" />
+    <Content Include="Assets\video\img3.jpg" />
+    <Content Include="Assets\video\img4.jpg" />
+    <Content Include="Assets\video\img5.jpg" />
+    <Content Include="Assets\video\img6.jpg" />
+    <Content Include="Assets\video\img7.jpg" />
+    <Content Include="Assets\video\img8.jpg" />
+    <Content Include="Assets\video\video1-test.mp4" />
+    <Content Include="Assets\video\video1.mp4" />
+    <Content Include="Assets\video\video2.mp4" />
+    <Content Include="Assets\video\video3.mp4" />
+    <Content Include="Assets\video\video4.mp4" />
     <Content Include="Assets\water.png" />
+    <Content Include="Assets\waterstream.jpg" />
     <Content Include="Assets\wrong.png" />
     <Content Include="Content\aos.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -190,6 +216,7 @@
     <Content Include="Content\styles123.css" />
     <Content Include="Content\tip.css" />
     <Content Include="Content\TipNew.css" />
+    <Content Include="Content\video-style.css" />
     <Content Include="Content\wireframe.css" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\collision_detection.js" />
@@ -229,6 +256,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jQuery.print.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -238,7 +266,9 @@
     <Content Include="Scripts\question.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\variables.js" />
+    <Content Include="Scripts\video-app.js" />
     <Content Include="Uploads\6.png" />
+    <Content Include="Assets\input.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -260,7 +290,9 @@
     <Content Include="Views\Home\Game.cshtml" />
     <Content Include="Views\Home\Quiz.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
-    <Content Include="Views\Home\Map.cshtml" />
+    <Content Include="Views\Home\MoreInfo.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Home\Video.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

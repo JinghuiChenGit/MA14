@@ -70,12 +70,12 @@ html, body {
 }
 
 .btn {
-    padding: 15px 45px;
+    padding: 7px 35px;
     background-color: #b88862;
     color: #ffffff;
     border: none;
     border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
+    
     font-size: 16px;
     cursor: pointer;
     display: inline-block;
@@ -271,7 +271,7 @@ html, body {
         margin-bottom: 15px;
     }
 
-  
+    
 
 
 
