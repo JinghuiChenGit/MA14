@@ -161,22 +161,27 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="Assets\36c157ff9c557b0aa48afdb98e708b8.jpg" />
-    <Content Include="Assets\6.png" />
-    <Content Include="Assets\aaron-burden-dXYE1d08BiY-unsplash.jpg" />
-    <Content Include="Assets\Alice.jpg" />
+    <Content Include="Assets\arrow-down.png" />
     <Content Include="Assets\background-3.jpg" />
+    <Content Include="Assets\banner.jpg" />
     <Content Include="Assets\book.jpg" />
     <Content Include="Assets\bullseye1.png" />
+    <Content Include="Assets\calculate.png" />
     <Content Include="Assets\Chen Yuan.jpg" />
+    <Content Include="Assets\circle-cropped %281%29.png" />
+    <Content Include="Assets\circle-cropped.png" />
+    <Content Include="Assets\clock.png" />
     <Content Include="Assets\correct.png" />
+    <Content Include="Assets\creek.jpg" />
     <Content Include="Assets\dropcount.jpg" />
     <Content Include="Assets\elia-pellegrini-ds6t_pcigxg-unsplash.jpg" />
+    <Content Include="Assets\game.png" />
     <Content Include="Assets\glass.png" />
     <Content Include="Assets\iconquiz.png" />
     <Content Include="Assets\image-asset.jpeg" />
     <Content Include="Assets\jacek-dylag-Vve7XkiUq_Y-unsplash.jpg" />
     <Content Include="Assets\Jinghui_Selfie.png" />
+    <Content Include="Assets\landing.jpeg" />
     <Content Include="Assets\logo-removebg-preview.png" />
     <Content Include="Assets\logo2.png" />
     <Content Include="Assets\logogame.png" />
@@ -184,11 +189,17 @@
     <Content Include="Assets\mid.jpg" />
     <Content Include="Assets\mid2.jpg" />
     <Content Include="Assets\mrjn-photography-YpZ2cj4s0oo-unsplash.jpg" />
-    <Content Include="Assets\nikita.png" />
     <Content Include="Assets\nikola-radojcic-64Y-4cUlV4w-unsplash.jpg" />
+    <Content Include="Assets\pet.png" />
+    <Content Include="Assets\plastic.png" />
+    <Content Include="Assets\river-background-band.jpg" />
+    <Content Include="Assets\river-background.jpg" />
     <Content Include="Assets\rocket.jpeg" />
     <Content Include="Assets\rocket.png" />
+    <Content Include="Assets\shower.png" />
     <Content Include="Assets\tap.png" />
+    <Content Include="Assets\tapuserage.png" />
+    <Content Include="Assets\toilet-paper.png" />
     <Content Include="Assets\video\img1.jpg" />
     <Content Include="Assets\video\img2.jpg" />
     <Content Include="Assets\video\img3.jpg" />
@@ -202,7 +213,12 @@
     <Content Include="Assets\video\video2.mp4" />
     <Content Include="Assets\video\video3.mp4" />
     <Content Include="Assets\video\video4.mp4" />
+    <Content Include="Assets\water-1.jpg" />
+    <Content Include="Assets\water-2.jpg" />
+    <Content Include="Assets\water-tap.png" />
     <Content Include="Assets\water.png" />
+    <Content Include="Assets\waterflow.png" />
+    <Content Include="Assets\watering-plants.png" />
     <Content Include="Assets\waterstream.jpg" />
     <Content Include="Assets\wrong.png" />
     <Content Include="Content\aos.css" />
@@ -211,6 +227,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Calculator.css" />
+    <Content Include="Content\css\base.css" />
+    <Content Include="Content\css\schedule.css" />
     <Content Include="Content\demo2.css" />
     <Content Include="Content\game.css" />
     <Content Include="Content\styles123.css" />
@@ -248,6 +266,11 @@
     <Content Include="Models\TipsModel.edmx.diagram">
       <DependentUpon>TipsModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\css\schedule.less" />
+    <None Include="Properties\PublishProfiles\H2rescueO - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\H2rescueO20201007 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\H2rescueomel - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\H2rescueowater - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\watersaver20200829213431 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\watersaver20200905203242 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -261,14 +284,29 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\js\schedule.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\question-update.js" />
     <Content Include="Scripts\question.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\variables.js" />
     <Content Include="Scripts\video-app.js" />
+    <Content Include="Uploads\1fb3adbf-adfb-4a21-b655-2d5adb475903.jpg" />
+    <Content Include="Uploads\2e7a7d8e-afb1-4255-a184-e730804c395e.jpg" />
+    <Content Include="Uploads\32d71df2-2fd5-4764-b311-c80531ac9eae.jpg" />
+    <Content Include="Uploads\3faa65f9-1606-476a-946d-6595355a025d.jpg" />
+    <Content Include="Uploads\55e8b995-f73f-4cbc-90a2-3ab64cd20d95.jpg" />
     <Content Include="Uploads\6.png" />
     <Content Include="Assets\input.txt" />
+    <Content Include="Uploads\65ae30c5-580f-40d6-a417-e9d421b807f3.jpg" />
+    <Content Include="Uploads\757c580f-ead8-4c28-83e9-8049da403acf.png" />
+    <Content Include="Uploads\88d7e826-69b4-4828-9ff1-eb44515162e8.jpg" />
+    <Content Include="Uploads\8ca4e0a3-3e91-49b5-96f6-c76c45345b41.jpg" />
+    <Content Include="Uploads\9771969e-ea6c-47df-be52-8484ff6ed7bc.jpg" />
+    <Content Include="Uploads\d71218eb-b493-4e78-a27a-18062e6c144e.png" />
+    <Content Include="Uploads\e4c7d836-e600-40fc-94be-7c68c66473ad.png" />
+    <Content Include="Uploads\ee75a7ab-bca8-47d5-b90b-98c0921703bf.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -293,6 +331,8 @@
     <Content Include="Views\Home\MoreInfo.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\Video.cshtml" />
+    <Content Include="Views\Home\Calculator.cshtml" />
+    <Content Include="Views\Home\WaterJourney.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

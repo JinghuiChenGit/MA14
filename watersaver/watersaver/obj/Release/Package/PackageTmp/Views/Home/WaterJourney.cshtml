@@ -1,0 +1,411 @@
+﻿
+@{
+    ViewBag.Title = "WaterJourney";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<head>
+    <style>
+        #midband {
+            padding: 0 200px;
+        }
+
+        .equal-hight {
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: rgba(0,0,0,0.5);
+            transform: translate(-0%, 0%);
+            padding: 15px 0px;
+            background-clip: content-box;
+        }
+
+        .equal-hight:hover .overlay {
+            opacity: 1;
+        }
+
+
+
+        .equal-hight:hover .tipswidget_title {
+            opacity: 0;
+        }
+
+        br {
+            display: block; /* makes it have a width */
+            content: ""; /* clears default height */
+            margin-top: 0; /* change this to whatever height you want it */
+        }
+
+        #flow {
+            padding-left: 250px;
+            padding-right: 150px;
+        }
+
+
+        #mapframe {
+
+            padding: 0px 280px;
+        }
+
+
+
+        #mapframe2 {
+
+            padding:82px;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/wireframe.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+
+    <link href="~/Content/qstyle.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/jQuery.print.js"></script>
+
+
+    <!-- Font stylesheet -->
+    <link href="https://fonts.cdnfonts.com/css/komika-hand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font stylesheet -->
+
+    <style>
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        body.printingContent > * {
+            display: none !important; /* hide everything in body when in print mode*/
+        }
+
+
+
+        .printContainer {
+            display: block !important; /* Override the rule above to only show the printables*/
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .modebar {
+            display: none !important;
+        }
+
+        .carousel-control-prev {
+            height: 80%;
+            top: 11%;
+        }
+
+        .carousel-control-next {
+            height: 80%;
+            top: 11%;
+        }
+
+
+        .carousel-control-prev:hover {
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .carousel-control-next:hover {
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        ul {
+            list-style-type: ' ➤ ';
+        }
+
+
+        .btn-home {
+            background-color: #000;
+        }
+
+        .btn-relax {
+            background-color: #3aa6dd;
+        }
+
+            .btn-relax:hover {
+                background-color: palevioletred;
+            }
+
+
+        #icon {
+            max-width: 256px;
+            max-height: 256px;
+            background-position: center center;
+            background-size: cover;
+            background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGNpcmNsZSBzdHlsZT0iZmlsbDojMUEyQjYzOyIgY3g9IjI1NiIgY3k9IjI2NyIgcj0iMjQ1Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRDlFQUZDOyIgZD0iTTIxNi43OTYsMzc4LjkyNWMxMi42NSwwLDI0LjMwNCw2LjM2MiwzMS4xNzUsMTcuMDJjMC4xNjksMC4yNjMsMC40NTMsMC40MzIsMC43NjUsMC40NTUNCgljMC4wMjUsMC4wMDIsMC4wNTEsMC4wMDMsMC4wNzYsMC4wMDNjMC4yODYsMCwwLjU1OS0wLjEyMiwwLjc0OS0wLjMzOGMxMC4zLTExLjY1MSwyNS4xMDgtMTguMzMzLDQwLjYyNy0xOC4zMzMNCgljNS4yODgsMCwxMC4zOTYsMC43NzQsMTUuMjMxLDIuMTkzbC0xNy44NDYtNDUuNzQ1aC02My4xNDZsLTE4LjA0MSw0Ni4yNDRDMjA5LjY5MSwzNzkuNDU0LDIxMy4xODIsMzc4LjkyNSwyMTYuNzk2LDM3OC45MjV6Ii8+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojQUVDMUVEOyIgZD0iTTIzMi42NTksMzM0LjE3OWgtOC4yMzJsLTE4LjA0MSw0Ni4yNDRjMi44MDgtMC44MjMsNS43NTYtMS4zMDYsOC43OTQtMS40NEwyMzIuNjU5LDMzNC4xNzl6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0FFQzFFRDsiIGQ9Ik0xOTcuNTg2LDQyNi4xOTJjMC4wNCwwLjI2NCwwLjE4MywwLjUwMSwwLjM5OCwwLjY1OWMwLjE3MiwwLjEyNywwLjM4LDAuMTk0LDAuNTkxLDAuMTk0DQoJCWMwLjA1MiwwLDAuMTA1LTAuMDA0LDAuMTU3LTAuMDEyYzMuNTctMC41NjgsNy4xNTUtMC44NTYsMTAuNjU1LTAuODU2YzE3LjA5OSwwLDMzLjQxLDYuNDI1LDQ1LjkzMSwxOC4wOTENCgkJYzAuMTkyLDAuMTc5LDAuNDM3LDAuMjY4LDAuNjgyLDAuMjY4YzAuMjQ1LDAsMC40OS0wLjA4OSwwLjY4Mi0wLjI2OGMxMi41Mi0xMS42NjYsMjguODMyLTE4LjA5MSw0NS45MzEtMTguMDkxDQoJCWMzLjQ5OSwwLDcuMDg1LDAuMjg4LDEwLjY1NSwwLjg1NmMwLjA1MywwLjAwOCwwLjEwNSwwLjAxMiwwLjE1NywwLjAxMmMwLjIxMSwwLDAuNDE5LTAuMDY3LDAuNTkxLTAuMTk0DQoJCWMwLjIxNS0wLjE1OCwwLjM1OC0wLjM5NSwwLjM5OC0wLjY1OWMxLjg0OC0xMi40MzgsNi41MjktMjQuMjE4LDEzLjU1Mi0zNC40OTljLTkuODc4LTkuMjcyLTIzLjE1OS0xNC45NjItMzcuNzc4LTE0Ljk2Mg0KCQljLTE2LjQ3NywwLTMxLjI1OSw3LjIyNi00MS4zNzYsMTguNjcxYy02Ljc3Ni0xMC41MTEtMTguNTc4LTE3LjQ3OC0zMi4wMTUtMTcuNDc4Yy0xMi44ODksMC0yNC4yNzMsNi40MTEtMzEuMTYyLDE2LjIxMg0KCQlDMTkxLjc2NSw0MDMuODI1LDE5NS44ODMsNDE0LjcyNywxOTcuNTg2LDQyNi4xOTJ6Ii8+DQo8L2c+DQo8cGF0aCBzdHlsZT0iZmlsbDojNDQ1RUEwOyIgZD0iTTE5OC41NzYsNDI2LjA0NWMtNi4wMTgtNDAuNTEtNDAuOTM1LTcxLjU5MS04My4xMTktNzEuNTkxYy0yOS4yODUsMC01NS4wNjEsMTQuOTg0LTcwLjEwNSwzNy42OTcNCgljMjMuMDM0LDM4LjY4Nyw1Ni40MjUsNzAuNDc1LDk2LjM0NCw5MS41NzFDMTQ1Ljk2NSw0NTQuMTU2LDE2OS4xNDQsNDMwLjcyMSwxOTguNTc2LDQyNi4wNDV6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojMjkzRDdDOyIgZD0iTTEyMy44NDksMzY0Ljc4N2MyMS40MzIsMCw0MS4wNzgsNy42MDIsNTYuNDI1LDIwLjIzN2MtMTUuNDEzLTE4LjY2NS0zOC43MTktMzAuNTctNjQuODE3LTMwLjU3DQoJYy0yOS4yODUsMC01NS4wNjEsMTQuOTg0LTcwLjEwNSwzNy42OTdjMS45ODcsMy4zMzcsNC4wNTcsNi42Miw2LjE5Niw5Ljg1MkM2Ny42NjcsMzc5LjQ3Nyw5NC4wMzYsMzY0Ljc4NywxMjMuODQ5LDM2NC43ODd6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojNDQ1RUEwOyIgZD0iTTM5Ni41NDMsMzU0LjQ1NGMtNDIuMTg0LDAtNzcuMTAxLDMxLjA4Mi04My4xMTksNzEuNTkxYzI5LjQzMiw0LjY3Niw1Mi42MTEsMjguMTExLDU2Ljg4LDU3LjY3Nw0KCWMzOS45MTgtMjEuMDk2LDczLjMxLTUyLjg4NSw5Ni4zNDQtOTEuNTcxQzQ1MS42MDQsMzY5LjQzOCw0MjUuODI4LDM1NC40NTQsMzk2LjU0MywzNTQuNDU0eiIvPg0KPGc+DQoJPHBhdGggc3R5bGU9ImZpbGw6IzI5M0Q3QzsiIGQ9Ik00MDEuNjI3LDM1NC42MWMtMS42ODItMC4xLTMuMzc2LTAuMTU2LTUuMDg0LTAuMTU2Yy00Mi4xODQsMC03Ny4xMDEsMzEuMDgyLTgzLjExOSw3MS41OTENCgkJYzMuMTM2LDAuNDk4LDYuMTk2LDEuMjIyLDkuMTc0LDIuMTMxQzMzMC45NiwzODkuODk3LDM2Mi40MDQsMzYwLjI1Niw0MDEuNjI3LDM1NC42MXoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojMjkzRDdDOyIgZD0iTTMwMi42MTIsNDI1LjE3N2MtMTguMDE2LDAtMzQuMzk1LDYuOTc2LTQ2LjYxMiwxOC4zNTljLTEyLjIxNy0xMS4zODQtMjguNTk2LTE4LjM1OS00Ni42MTItMTguMzU5DQoJCWMtMzQuNDM1LDAtNjIuOTIsMjUuNDQ2LTY3LjY5NSw1OC41NThDMTc1LjgyMSw1MDEuNzcyLDIxNC43MTMsNTEyLDI1Niw1MTJzODAuMTc5LTEwLjIyOCwxMTQuMzA3LTI4LjI2NQ0KCQlDMzY1LjUzMiw0NTAuNjIzLDMzNy4wNDcsNDI1LjE3NywzMDIuNjEyLDQyNS4xNzd6Ii8+DQo8L2c+DQo8cGF0aCBzdHlsZT0iZmlsbDojMUEyQjYzOyIgZD0iTTIyMy42ODYsNDMzLjY4MWM5LjQzNSwwLDE4LjQzOSwxLjgzNSwyNi42OCw1LjE2MmMtMTEuNDIzLTguNTY5LTI1LjYtMTMuNjY2LTQwLjk3OS0xMy42NjYNCgljLTM0LjQzNSwwLTYyLjkyLDI1LjQ0Ni02Ny42OTUsNTguNTU4YzQuMDIzLDIuMTI2LDguMTE0LDQuMTQsMTIuMjY1LDYuMDQ0QzE2MC45NjQsNDU3LjcwNCwxODkuNTA4LDQzMy42ODEsMjIzLjY4Niw0MzMuNjgxeiIvPg0KPGc+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0FFQzFFRDsiIGQ9Ik0yNzguNTI4LDMzNC4xNzloLTE1LjExOWwxLjkyOSwxNS4yNjFjMC41MTksNC4xMSw0LjI3Nyw3LjAxNyw4LjM4MSw2LjUNCgkJYzQuMTA5LTAuNTIsNy4wMi00LjI3Miw2LjUtOC4zODFMMjc4LjUyOCwzMzQuMTc5eiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNBRUMxRUQ7IiBkPSJNMjMzLjQ3MiwzMzQuMTc5bC0zLjk2NiwzMS4zOGMtMC41MTksNC4xMDksMi4zOTEsNy44NjIsNi41MDEsOC4zODENCgkJYzAuMzE5LDAuMDQsMC42MzYsMC4wNiwwLjk1LDAuMDZjMy43MjMtMC4wMDEsNi45NTMtMi43NzEsNy40MzItNi41NjFsNC4yMDQtMzMuMjYxaC0xNS4xMjFWMzM0LjE3OXoiLz4NCjwvZz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRTM3NDU7IiBkPSJNMTc5LjEwOCwxOTUuNzE3YzAtOC4xNTUsMC4zMDYtMTYuMjg4LDAuODc4LTI0LjM2MmMtMjQuMDYsMTMuNTQ5LTQwLjYzNiw0My43MzMtNDAuNjM2LDc4LjY3OA0KCWMwLDE4LjQ1Niw0LjU4OSwzNi4wNTcsMTMuMjcsNTAuOWMwLjgxNSwxLjM5NCwyLjI5LDIuMTkxLDMuODIyLDIuMTkxYzAuNTYsMCwxLjEyNy0wLjEwNiwxLjY3Mi0wLjMyOQ0KCWMxMS40MDktNC42NjQsMjMuNjAxLTcuMDYsMzYuMjQ0LTcuMTZDMTg0LjM3NSwyNjQuOTA3LDE3OS4xMDgsMjMwLjU5MSwxNzkuMTA4LDE5NS43MTd6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojQjcwOTJCOyIgZD0iTTE1MC42ODksMjUwLjAzM2MwLTI4Ljg2MywxMS4zMTUtNTQuNDY3LDI4LjgwOC03MC4xNDNjMC4xMzQtMi44NTEsMC4yODktNS42OTcsMC40OS04LjUzNQ0KCWMtMjQuMDYsMTMuNTQ5LTQwLjYzNiw0My43MzMtNDAuNjM2LDc4LjY3OGMwLDE4LjQ1Niw0LjU4OSwzNi4wNTcsMTMuMjcsNTAuOWMwLjgxNSwxLjM5NCwyLjI5LDIuMTkxLDMuODIyLDIuMTkxDQoJYzAuNTYsMCwxLjEyNy0wLjEwNiwxLjY3Mi0wLjMyOWMxLjg4LTAuNzY5LDMuNzktMS40NTMsNS43MTEtMi4wOThDMTU1LjIzMywyODUuOTAzLDE1MC42ODksMjY4LjM5MiwxNTAuNjg5LDI1MC4wMzN6Ii8+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojRkUzNzQ1OyIgZD0iTTMzMi4wMTMsMTcxLjM1NWMwLjU3Miw4LjA3NSwwLjg3OCwxNi4yMDgsMC44NzgsMjQuMzYyYzAsMzQuODczLTUuMjY3LDY5LjE4OS0xNS4yNTEsOTkuOTE4DQoJCWMxMi42NDQsMC4xLDI0LjgzNSwyLjQ5NiwzNi4yNDQsNy4xNmMwLjU0NSwwLjIyMywxLjExMywwLjMyOSwxLjY3MiwwLjMyOWMxLjUzMywwLDMuMDA3LTAuNzk4LDMuODIyLTIuMTkxDQoJCWM4LjY4Mi0xNC44NDMsMTMuMjctMzIuNDQ0LDEzLjI3LTUwLjlDMzcyLjY0OSwyMTUuMDg4LDM1Ni4wNzMsMTg0LjkwNCwzMzIuMDEzLDE3MS4zNTV6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0ZFMzc0NTsiIGQ9Ik0yMTcuNzA4LDMwNy4xMjV2MjMuMDU0YzAsMi43NSwyLjI1LDUsNSw1aDY2LjU4M2MyLjc1LDAsNS0yLjI1LDUtNXYtMjMuMDU0SDIxNy43MDh6Ii8+DQo8L2c+DQo8cGF0aCBzdHlsZT0iZmlsbDojQjcwOTJCOyIgZD0iTTIzNC43MTUsMzMwLjE3OXYtMjMuMDU0aC0xNy4wMDd2MjMuMDU0YzAsMi43NSwyLjI1LDUsNSw1aDE3LjAwNw0KCUMyMzYuOTY1LDMzNS4xNzksMjM0LjcxNSwzMzIuOTI5LDIzNC43MTUsMzMwLjE3OXoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNFRUY2RkY7IiBkPSJNMzE2Ljg1NCw5MC4zMThIMTk1LjE0NWMtMTEuMTU0LDMyLjE1My0xNy4wMzcsNjguMzQzLTE3LjAzNywxMDUuMzk5DQoJYzAsMzguNTIyLDYuMzg5LDc2LjM4NywxOC40NzUsMTA5LjVjMC42MzgsMS43NDYsMi4yOTgsMi45MDgsNC4xNTcsMi45MDhoMTEwLjUxOWMxLjg1OSwwLDMuNTItMS4xNjIsNC4xNTctMi45MDgNCgljMTIuMDg2LTMzLjExMywxOC40NzUtNzAuOTc4LDE4LjQ3NS0xMDkuNUMzMzMuODkyLDE1OC42NjEsMzI4LjAwOSwxMjIuNDcyLDMxNi44NTQsOTAuMzE4eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0Q5RUFGQzsiIGQ9Ik0yMTAuNzU2LDMwNS4yMTdjLTEyLjA4Ny0zMy4xMTMtMTguNDc1LTcwLjk3OC0xOC40NzUtMTA5LjVjMC0zNy4wNTYsNS44ODMtNzMuMjQ2LDE3LjAzNy0xMDUuMzk5DQoJaC0xNC4xNzJjLTExLjE1NCwzMi4xNTMtMTcuMDM3LDY4LjM0My0xNy4wMzcsMTA1LjM5OWMwLDM4LjUyMiw2LjM4OSw3Ni4zODcsMTguNDc1LDEwOS41YzAuNjM4LDEuNzQ2LDIuMjk4LDIuOTA4LDQuMTU3LDIuOTA4DQoJaDE0LjE3MkMyMTMuMDU0LDMwOC4xMjUsMjExLjM5NCwzMDYuOTYzLDIxMC43NTYsMzA1LjIxN3oiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNFQTJBM0Q7IiBkPSJNMjI3LjE3OSw5MC4zMTh2MTYuNTk0YzAsMi43NSwyLjI1LDUsNSw1aDQ3LjY0MmMyLjc1LDAsNS0yLjI1LDUtNVY5MC4zMThIMjI3LjE3OXoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNCNzA5MkI7IiBkPSJNMjM4LjUxNywxMDYuOTEyVjkwLjMxOGgtMTEuMzM4djE2LjU5NGMwLDIuNzUsMi4yNSw1LDUsNWgxMS4zMzgNCglDMjQwLjc2NywxMTEuOTEyLDIzOC41MTcsMTA5LjY2MiwyMzguNTE3LDEwNi45MTJ6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRkUzNzQ1OyIgZD0iTTI1NiwwYy0wLjk4NywwLTEuOTczLDAuMzI5LTIuNzg1LDAuOTg2Yy0yMi4zMzgsMTguMDg5LTQxLjE1NCw0NS41MjktNTQuNDExLDc5LjM1NA0KCWMtMS40MSwzLjU5OS0yLjczNSw3LjI2OS00LjAwNiwxMC45NzhoMTIyLjQwM2MtMS4yNzEtMy43MDktMi41OTYtNy4zNzktNC4wMDYtMTAuOTc4Yy0xMy4yNTctMzMuODI1LTMyLjA3Mi02MS4yNjUtNTQuNDExLTc5LjM1NA0KCUMyNTcuOTczLDAuMzI5LDI1Ni45ODcsMCwyNTYsMHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNCNzA5MkI7IiBkPSJNMjYzLjA4Niw0LjYyOGMtMS40MTktMS4yNTEtMi44NTItMi40NjgtNC4zMDEtMy42NDJDMjU3Ljk3MywwLjMyOSwyNTYuOTg3LDAsMjU2LDANCglzLTEuOTczLDAuMzI5LTIuNzg1LDAuOTg2Yy0yMi4zMzgsMTguMDg5LTQxLjE1NCw0NS41MjktNTQuNDExLDc5LjM1NGMtMS40MSwzLjU5OS0yLjczNSw3LjI2OS00LjAwNiwxMC45NzhoMTQuMTcyDQoJYzEuMjcxLTMuNzA5LDIuNTk2LTcuMzc5LDQuMDA2LTEwLjk3OEMyMjUuMzc0LDQ4LjcwOSwyNDIuNjMyLDIyLjY2NywyNjMuMDg2LDQuNjI4eiIvPg0KPGNpcmNsZSBzdHlsZT0iZmlsbDojNDQ1RUEwOyIgY3g9IjI1NiIgY3k9IjE4MC45MyIgcj0iNTEuMDIiLz4NCjxjaXJjbGUgc3R5bGU9ImZpbGw6IzY5Q0RGRjsiIGN4PSIyNTYiIGN5PSIxODAuOTMiIHI9IjMyLjczMSIvPg0KPHBhdGggc3R5bGU9ImZpbGw6IzUyQkJFRjsiIGQ9Ik0yMzUuMjY4LDE4MC45MzJjMCwxNi4wMjcsMTEuNTIxLDI5LjM1NSwyNi43MzIsMzIuMTc0Yy0xLjk0NiwwLjM2LTMuOTQ5LDAuNTU4LTYsMC41NTgNCgljLTE4LjA3OCwwLTMyLjczMS0xNC42NTUtMzIuNzMxLTMyLjczMnMxNC42NTQtMzIuNzMxLDMyLjczMS0zMi43MzFjMi4wNSwwLDQuMDU0LDAuMTk4LDYsMC41NTgNCglDMjQ2Ljc4OSwxNTEuNTc4LDIzNS4yNjgsMTY0LjkwNSwyMzUuMjY4LDE4MC45MzJ6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRkZEMDBEOyIgZD0iTTExMC4xMzYsMTc4LjczN2MtMS4xNDcsMC0yLjE4MS0wLjY5MS0yLjYyLTEuNzUxYy01LjU4My0xMy40NzktOS42OTktMTcuNTk0LTIzLjE3OC0yMy4xNzcNCgljLTEuMDYtMC40MzktMS43NS0xLjQ3My0xLjc1LTIuNjJjMC0xLjE0NywwLjY5MS0yLjE4MSwxLjc1LTIuNjJjMTMuNDgtNS41ODUsMTcuNTk1LTkuNzAxLDIzLjE3OC0yMy4xNzkNCgljMC40MzktMS4wNiwxLjQ3My0xLjc1MSwyLjYyLTEuNzUxczIuMTgxLDAuNjkxLDIuNjIsMS43NTFjNS41ODQsMTMuNDc4LDkuNywxNy41OTQsMjMuMTc5LDIzLjE3OQ0KCWMxLjA2LDAuNDM5LDEuNzUxLDEuNDczLDEuNzUxLDIuNjJjMCwxLjE0Ny0wLjY5MSwyLjE4Mi0xLjc1MSwyLjYyYy0xMy40NzksNS41ODItMTcuNTk1LDkuNjk4LTIzLjE3OSwyMy4xNzcNCglDMTEyLjMxNywxNzguMDQ2LDExMS4yODMsMTc4LjczNywxMTAuMTM2LDE3OC43MzdMMTEwLjEzNiwxNzguNzM3eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGQUYxMDsiIGQ9Ik0xMTMuMTg1LDE3MS4zMTdjLTUuNTgzLTEzLjQ3OS05LjY5OS0xNy41OTQtMjMuMTc4LTIzLjE3N2MtMC42NjYtMC4yNzUtMS4xODUtMC43ODctMS40OC0xLjQxMw0KCWMtMS4yOTQsMC42MDYtMi42NzQsMS4yMTQtNC4xODksMS44NDJjLTEuMDYsMC40MzktMS43NSwxLjQ3My0xLjc1LDIuNjJjMCwxLjE0NywwLjY5MSwyLjE4MiwxLjc1LDIuNjINCgljMTMuNDc5LDUuNTgzLDE3LjU5NSw5LjY5OCwyMy4xNzgsMjMuMTc3YzAuNDM5LDEuMDYsMS40NzMsMS43NTEsMi42MiwxLjc1MXMyLjE4MS0wLjY5MSwyLjYyLTEuNzUxDQoJYzAuNjI3LTEuNTE1LDEuMjM2LTIuODk1LDEuODQxLTQuMTg4QzExMy45NzIsMTcyLjUwMywxMTMuNDYxLDE3MS45ODMsMTEzLjE4NSwxNzEuMzE3eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik00MTEuNDY5LDIwMS40MDRjLTEuMDA4LDAtMS45MTctMC42MDctMi4zMDMtMS41MzljLTQuOTA3LTExLjg0OC04LjUyNS0xNS40NjUtMjAuMzczLTIwLjM3Mg0KCWMtMC45MzEtMC4zODUtMS41MzktMS4yOTUtMS41MzktMi4zMDNjMC0xLjAwOSwwLjYwNy0xLjkxNywxLjUzOS0yLjMwM2MxMS44NDktNC45MDksMTUuNDY2LTguNTI3LDIwLjM3My0yMC4zNzQNCgljMC4zODYtMC45MzIsMS4yOTUtMS41MzksMi4zMDMtMS41MzlzMS45MTcsMC42MDcsMi4zMDMsMS41MzljNC45MDgsMTEuODQ4LDguNTI2LDE1LjQ2NSwyMC4zNzUsMjAuMzc0DQoJYzAuOTMxLDAuMzg2LDEuNTM4LDEuMjk0LDEuNTM4LDIuMzAzYzAsMS4wMDgtMC42MDcsMS45MTctMS41MzksMi4zMDNjLTExLjg0OCw0LjkwNy0xNS40NjYsOC41MjQtMjAuMzc0LDIwLjM3Mg0KCUM0MTMuMzg3LDIwMC43OTYsNDEyLjQ3OCwyMDEuNDA0LDQxMS40NjksMjAxLjQwNEw0MTEuNDY5LDIwMS40MDR6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRDlFQUZDOyIgZD0iTTQxNC4xNDksMTk0Ljg4MmMtNC45MDgtMTEuODQ4LTguNTI1LTE1LjQ2NS0yMC4zNzQtMjAuMzczYy0wLjU4NS0wLjI0Mi0xLjA0Mi0wLjY5MS0xLjMwMS0xLjI0Mg0KCWMtMS4xMzcsMC41MzItMi4zNTEsMS4wNjctMy42ODIsMS42MTljLTAuOTMxLDAuMzg2LTEuNTM5LDEuMjk0LTEuNTM5LDIuMzAzYzAsMS4wMDgsMC42MDcsMS45MTcsMS41MzksMi4zMDMNCgljMTEuODQ5LDQuOTA3LDE1LjQ2Niw4LjUyNCwyMC4zNzMsMjAuMzcyYzAuMzg2LDAuOTMyLDEuMjk1LDEuNTM5LDIuMzAzLDEuNTM5czEuOTE3LTAuNjA3LDIuMzAzLTEuNTM5DQoJYzAuNTUxLTEuMzMxLDEuMDg2LTIuNTQ1LDEuNjE5LTMuNjgyQzQxNC44NDEsMTk1LjkyNCw0MTQuMzkyLDE5NS40NjcsNDE0LjE0OSwxOTQuODgyeiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGOTUxODsiIGQ9Ik0zODUuNDY5LDk2LjA3MWMtMS4xNzUsMC0yLjIzNC0wLjcwOC0yLjY4NC0xLjc5M2MtNS43MTgtMTMuODA2LTkuOTMzLTE4LjAyMS0yMy43MzktMjMuNzM4DQoJYy0xLjA4NS0wLjQ0OS0xLjc5Mi0xLjUwOS0xLjc5Mi0yLjY4M2MwLTEuMTc2LDAuNzA4LTIuMjM0LDEuNzkyLTIuNjg0YzEzLjgwNy01LjcyLDE4LjAyMi05LjkzNSwyMy43MzktMjMuNzM5DQoJYzAuNDUtMS4wODYsMS41MDktMS43OTQsMi42ODQtMS43OTRzMi4yMzQsMC43MDgsMi42ODQsMS43OTRjNS43MTksMTMuODA1LDkuOTM0LDE4LjAyLDIzLjc0LDIzLjczOQ0KCWMxLjA4NSwwLjQ1LDEuNzkyLDEuNTA4LDEuNzkyLDIuNjg0YzAsMS4xNzQtMC43MDgsMi4yMzQtMS43OTMsMi42ODNjLTEzLjgwNiw1LjcxNy0xOC4wMiw5LjkzMy0yMy43NCwyMy43MzgNCglDMzg3LjcwMyw5NS4zNjMsMzg2LjY0NCw5Ni4wNzEsMzg1LjQ2OSw5Ni4wNzFMMzg1LjQ2OSw5Ni4wNzF6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRUY4MzE4OyIgZD0iTTM4OC41OTIsODguNDcyYy01LjcxOS0xMy44MDUtOS45MzQtMTguMDItMjMuNzQtMjMuNzM4Yy0wLjY4Mi0wLjI4Mi0xLjIxMy0wLjgwNi0xLjUxNi0xLjQ0Nw0KCWMtMS4zMjQsMC42MjEtMi43MzksMS4yNDQtNC4yOTEsMS44ODZjLTEuMDg1LDAuNDUtMS43OTIsMS41MDgtMS43OTIsMi42ODRjMCwxLjE3NCwwLjcwOCwyLjIzNCwxLjc5MiwyLjY4Mw0KCWMxMy44MDYsNS43MTgsMTguMDIyLDkuOTMzLDIzLjczOSwyMy43MzhjMC40NSwxLjA4NSwxLjUwOSwxLjc5MywyLjY4NCwxLjc5M3MyLjIzNC0wLjcwOCwyLjY4NC0xLjc5Mw0KCWMwLjY0My0xLjU1MiwxLjI2Ni0yLjk2NiwxLjg4Ni00LjI5QzM4OS4zOTcsODkuNjg2LDM4OC44NzQsODkuMTU0LDM4OC41OTIsODguNDcyeiIvPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=)
+        }
+
+        .infolayer {
+        }
+
+        svg {
+            vertical-align: top;
+        }
+
+        .svg-container {
+            margin: auto auto;
+            vertical-align: top;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="col-12" style="        background-image: url('../Assets/river-background-band.jpg');
+        background-position: center center;
+        background-size: cover;
+        padding: 0px;
+        height: 15%;">
+
+        <div class="col-12" style="background-color:rgba(45,45,45,0.3); width:100%; height:100%;">
+            <div class="row">
+                <div class="p-4 col-lg-8" style="color:white;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="body-content container" id="Water_Catchments">
+        <div class="h-100 ">
+
+            <div class="row" style="margin: 0px; margin:60px; margin-bottom:0px;">
+                <h2 class="col-12" style="font-size: 2.5em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:#333333; margin:10px 0px; ">WHERE WATER COMES AND GOES</h2>
+
+                <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 50px; font-family: 'Quicksand', sans-serif;">
+                    Let 's get to know more details about where<br>
+                    water comes from and where water goes after<br>
+                    it 's used from your household!
+                </p>
+                <div class="col-12" style="padding:20px; text-align:center;">
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: right;margin-top:10px">
+                        <button type="submit" class="btn btn-primary" style="font-family: 'Raleway', sans-serif;font-weight: bold; padding: 7px 60px; background-color: rgb(237,203,175); color: #333333" onclick="location.href='#watermap'; ">Maps</button>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: left;margin-top:10px">
+                        <button type="submit" class="btn btn-primary" style="font-family: 'Raleway', sans-serif;font-weight: bold; padding: 7px 15px; background-color: rgb(237,203,175); color: #333333" onclick="location.href='#MoreInformation'; ">More Information</button>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-6" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 30px auto; border-radius:5px;">Explore the Water Journey</div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="col-12" style=" text-align: center; " id="flow">
+
+        <img src="~/Assets/waterflow.png" style="width: 100%; ">
+
+
+
+    </div>
+
+    <div class="body-content container" id="Water_Catchments">
+        <div class="h-100 ">
+
+            <div class="row" style="margin: 0px; margin:60px; margin-bottom:0px;">
+
+
+                <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
+                    Water in the <b>Melbourne</b> region comes from <b>protected catchments</b> that are stored in <b>reservoirs</b>
+                    (large natural or man-made storage facilities) that leave the reservoir for drinking <b>water treatment</b>
+                    <b>plants</b> where it is coagulated, clarified, filtered, disinfected, fluoridated, pH corrected and then fed
+                    into the water supply system. The Melbourne area is mainly covered by the <b>Winneke Water</b>
+                    <b>Treatment Plant</b> and the <b>Tarago Water Treatment Plant</b>, where tested fresh water is transported
+                    through <b>large pipes</b> to <b>38 smaller supply facilities</b>, where it is then distributed by the water
+                    Back to Top
+                    company to the mains in <b>your home</b>. Only three-quarters of your domestic sewage after you've
+                    used it is collected by the <b>wastewater treatment plant</b>, and treated sewage is only discharged
+                    into <b>rivers and oceans</b> if it meets discharge standards. However, <b>5%</b> of the water is lost in the
+                    process.
+                </p>
+
+            </div>
+            <div class="row" style="margin: 0px; margin:60px; margin-bottom:0px;">
+
+
+                <div class="col-lg-6" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 30px auto; border-radius:5px;">
+                    Explore Melbournre's water
+                    catchment and storage maps
+                </div>
+
+                <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 50px; font-family: 'Quicksand', sans-serif;">
+                    The Maps shows locat ions of Water<br>
+                    Catchment and Water Storage in<br>
+                    the area around Melbourne
+                </p>
+
+                <h2 class="col-12" style="font-size: x-large;font-weight: bold;color:black; text-align:left; font-family: 'Quicksand', sans-serif; color:#000; margin:30px 0px; " id="watermap">Water Catchment Map</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" style="margin: 0px;  margin-bottom:0px;" id="mapframe">
+
+        <div id='map' style='width: 100%; height: 500px;'></div>
+
+
+
+
+    </div>
+
+    <div class="body-content container" id="mapframe2">
+        <h2 class="col-12" style="font-size: x-large;font-weight: bold;color:black; text-align:left; font-family: 'Quicksand', sans-serif; color:#000; margin:30px 0px; " id="watermap">Water Storage Map</h2>
+        <div class='tableauPlaceholder' id='viz1602398410061' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;XG&#47;XGNW296Y5&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;XGNW296Y5' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;XG&#47;XGNW296Y5&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' /><param name='filter' value='publish=yes' /></object></div>
+        <script type='text/javascript'>var divElement = document.getElementById('viz1602398410061'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '777px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+    </div>
+
+        <div class=" body-content" id="protect">
+            <div class="container">
+                <div class="row" style="margin: 0px; margin-bottom:60px;">
+
+                    <div class="col-lg-4" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 30px auto; border-radius:5px; margin-top:100px;" id="MoreInformation">
+                        Did you know?
+                    </div>
+
+                    <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 50px; font-family: 'Quicksand', sans-serif;">
+                        Explanation on Water Journey
+                    </p>
+                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
+                        <b>Fresh water</b><br>
+                        Fresh water has a long journey to make before it enters your home. Water in the Melbourne region comes
+                        from protected catchments, which are stored in reservoirs (large natural or man-made water storage facilities,
+                        usually created by building dams on rivers).
+                        There are two types of reservoirs:
+
+                    </p>
+
+                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
+                        - On-stream reservoirs, where rainfall across Melbourne's water catchments drive the amount of water that
+                        flows into these reservoirs.
+                    </p>
+                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
+                        - Off-stream reservoirs, where water is transferred from on-stream reservoirs or other sources: for example,
+                        Sugarloaf Reservoir, In addition, they have been able to access the North-South Pipeline, which can receive
+                        water from the North-South Pipeline.
+                    </p>
+                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
+                        The water leaves the reservoir and enters the drinking water treatment plant for coagulation, clarification,
+                        filtration, disinfection, fluoridation and pH correction prior to entering the water supply system. The Melbourne
+                        area is primarily covered by the Winneke Water Treatment Plant and the Tarago Water Treatment Plant, with
+                        the Cardinia Reservoir also receiving desalinated water from the Victoria Desalination Plant in Wantage. The
+                        plant extracts seawater from Bass Strait and converts it into potable water through a series of processes
+                        including filtration, reverse osmosis, disinfection and fluoridation.
+                    </p>
+                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
+                        Tested fresh water travels through large pipes to 38 smaller water facilities, where the water company
+                        distributes it to your home's water mains, at which point its journey comes to an end for now.
+                    </p>
+                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
+                        <b>Sewage</b><br>
+                        Only three quarters of domestic sewage is collected in sewage treatment plants and treated sewage is only
+                        discharged into rivers and oceans if it meets discharge standards. Yet 5% of the water is lost in the process. Did you know? Of the water used in Melbourne each year, 95 per cent is wastewater, or sewage. Currently,
+                        only 1.5 per cent, or 266 million litres, of wastewater is recycled.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoidGlhbnFpaHVhbmciLCJhIjoiY2tmNWlpenF0MDlnZzMxcXJ5MGFjcGdqdiJ9.Pso8CSdKIqG6c4f3AYkZHg';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/tianqihuang/ckg4qgsj023rx19pl8w9gwkuq', // stylesheet location
+                center: [145.338, -38.061], // starting position [lng, lat]
+                zoom: 8 // starting zoom
+            });
+        </script>
+
+
+
+
+
+
+        @Scripts.Render("~/bundles/jquery")
+</body>
+

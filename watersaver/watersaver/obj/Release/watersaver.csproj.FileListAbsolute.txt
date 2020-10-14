@@ -80,4 +80,3 @@ C:\Users\83549\Desktop\watersaver\watersaver\obj\Release\watersaver.csproj.CoreC
 C:\Users\83549\Desktop\watersaver\watersaver\obj\Release\watersaver.csproj.CopyComplete
 C:\Users\83549\Desktop\watersaver\watersaver\obj\Release\watersaver.dll
 C:\Users\83549\Desktop\watersaver\watersaver\obj\Release\watersaver.pdb
-C:\Users\83549\Desktop\watersaver\watersaver\obj\Release\watersaver.csprojAssemblyReference.cache

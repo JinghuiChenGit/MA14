@@ -73,7 +73,8 @@ html, body {
     padding: 7px 35px;
     background-color: #b88862;
     color: #ffffff;
-    border: none;
+    border:none;
+  
     border-radius: 5px;
     
     font-size: 16px;
@@ -271,7 +272,14 @@ html, body {
         margin-bottom: 15px;
     }
 
+    #scheduleY {
+    display:none !important;
+    }
+
+    label{
+    font-size:1.5em;
     
+    }
 
 
 

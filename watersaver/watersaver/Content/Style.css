@@ -63,9 +63,7 @@
 
 
 @media screen and (max-width: 767px) {
-    #home_title {
-        font-size: 2rem;
-    }
+
     .pricingTable-firstTable_table {
         display: block;
         width: 90%;
@@ -134,10 +132,6 @@
 }
 
 @media screen and (max-width: 767px) {
-
-    #home_title {
-        font-size: 2rem;
-    }
 
     .pricingTable-firstTable_table__header {
         padding: 0px;
@@ -299,7 +293,7 @@
 
 
     #home_title {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
         color: white;
     }
 
@@ -309,19 +303,84 @@
         }
     }
 
-    @media screen and (max-width: 776px) {
+
+#tipswidget {
+    margin-left: 4.166665%;
+}
+
+#tipswidget2 {
+    margin-left: 4.166665%;
+}
+
+    @media screen and (max-width: 767px) {
         #home_title {
-            font-size: 2rem;
-            color: white;
+            margin-top: 0px;
         }
+    }
+
+    @media screen and (max-width: 767px) {
+
 
         #myModal .modal-content {
             width: 90%;
         }
+
+        #tipswidget {
+            margin-left: 0;
+        }
+
+        #tipswidget2 {
+            margin-left: 0;
+        }
     }
 
-    @media screen and (max-width: 376px) {
-        #home_title {
-            margin-top: 60px;
-        }
+    .text {
+    color: white;
+    font-size: 1.2em;
+    padding: 20px 50px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@media screen and (max-width: 992px) {
+
+    .text {
+        color: white;
+        font-size: 0.85em;
+        padding: 20px 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .text {
+        color: white;
+        font-size: 1em;
+        padding: 20px 20px;
+    }
+
+    #midbandtext {
+        font-size: x-large !important;
+    }
+
+    #flow {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #mapframe {
+        padding: 0px 0px;
+    }
+
+
+    #mapframe2 {
+        padding: 0px;
+    }
+
+
+    .tooltip1 .tooltiptext {
+        transform: translate(-79%, 19%);
+    }
     }

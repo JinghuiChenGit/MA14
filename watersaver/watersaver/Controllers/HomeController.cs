@@ -48,6 +48,27 @@ namespace watersaver.Controllers
 
         }
 
+        public ActionResult WaterJourney()
+        {
+
+            ViewBag.Message = "Water Journey page.";
+
+            return View();
+
+
+        }
+
+
+        public ActionResult Calculator()
+        {
+
+            ViewBag.Message = "Calculator page.";
+
+            return View();
+
+
+        }
+
 
         public ActionResult MoreInfo()
         {

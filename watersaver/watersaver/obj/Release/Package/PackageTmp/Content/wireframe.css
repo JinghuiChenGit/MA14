@@ -517,6 +517,8 @@ pre {
   flex: 0 0 8.33333%;
   max-width: 8.33333%; }
 
+
+
 .col-2 {
   flex: 0 0 16.66667%;
   max-width: 16.66667%; }
@@ -754,6 +756,13 @@ pre {
   .col-md-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%; }
+
+    .col-md-2h5 {
+        flex: 0 0 20.8333325%;
+        max-width: 20.8333325%;
+    }
+
+
   .col-md-3 {
     flex: 0 0 25%;
     max-width: 25%; }
@@ -851,6 +860,12 @@ pre {
   .col-lg-1 {
     flex: 0 0 8.33333%;
     max-width: 8.33333%; }
+    .col-lg-2h5 {
+        flex: 0 0 20.8333325%;
+        max-width: 20.8333325%;
+    }
+
+
   .col-lg-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%; }
@@ -3550,7 +3565,8 @@ button.close {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #cdcdcd !important; }
+    background-color: #b98962 !important;
+}
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
@@ -4378,6 +4394,14 @@ button.bg-dark:focus {
 
 .h-75 {
   height: 75% !important; }
+
+.h-85 {
+    height: 85% !important;
+}
+
+.h-90 {
+    height: 90% !important;
+}
 
 .h-100 {
   height: 100% !important; }

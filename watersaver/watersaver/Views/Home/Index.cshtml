@@ -5,18 +5,74 @@
 }
 <head>
     <style>
-    #midband {
-    padding: 0 200px;
+        #midband {
+            padding: 0 200px;
+        }
+
+        .equal-hight {
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: rgba(0,0,0,0.5);
+            transform: translate(-0%, 0%);
+            padding: 15px 0px;
+            background-clip: content-box;
+        }
+
+        .equal-hight:hover .overlay {
+            opacity: 1;
+        }
 
 
-    }
 
+        .equal-hight:hover .tipswidget_title {
+            opacity: 0;
+        }
+
+        br {
+            display: block; /* makes it have a width */
+            content: ""; /* clears default height */
+            margin-top: 0; /* change this to whatever height you want it */
+        }
+        .tooltip1 .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            transform: translate(-150%, 0%);
+        }
+
+        .tooltip1:hover .tooltiptext {
+            visibility: visible;
+        }
     </style>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/Content/wireframe.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+
     <link href="~/Content/qstyle.css" rel="stylesheet" />
     <link href="~/Content/Style.css" rel="stylesheet" />
     <script src="https://d3js.org/d3.v4.js"></script>
@@ -26,7 +82,8 @@
 
     <!-- Font stylesheet -->
     <link href="https://fonts.cdnfonts.com/css/komika-hand" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font stylesheet -->
 
     <style>
@@ -110,13 +167,22 @@
         }
 
         ul {
-            list-style-type: ' ✦ ';
+            list-style-type: ' ➤ ';
         }
 
 
         .btn-home {
-            background-color: #348172;
+            background-color: #000;
         }
+
+        .btn-relax {
+            background-color: #3aa6dd;
+        }
+
+            .btn-relax:hover {
+                background-color: palevioletred;
+            }
+
 
         #icon {
             max-width: 256px;
@@ -137,551 +203,408 @@
             margin: auto auto;
             vertical-align: top;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+
     </style>
+</head>
+
+<body>
+
+    
 
 
-        <body>
-        <div id="myModal" class="modal" >
-        <!-- Modal content -->
-        <div class="modal-content" id="modal-content" style="margin-bottom: 20px;" >
-        <span class="close" style="text-align: right;color: #212529; opacity: 1;" > &times;</span >
-
-
-        <h1 style="text-align: center; font-weight: bold;font-family:'Komika Hand', sans-serif; color:#348172;  " > Your daily water usage report </h1 > <br >
-        <h3 style="text-align: center; font-weight: bold;  " > Target: 155L per day</h3>
-        <div class="row" >
-
-        <div class="col-sm-12 col-md-12  col-12" id="myDiv" style="border-style:initial;border-width:10px;" >
-        <p id="demo" style="text-align: center;font-size: 20px;" > </p >
-
-        </div >
-        </div >
-
-        <div class="row" >
-        <div class="col-sm-12 col-md-12  col-lg-6" style="text-align: center" >
-        <h2 style="text-align: center; font-weight: bold;margin-bottom:40px;" > Your daily water usage </h2 > <br >
-        <div style="font-size:20px; " >
-        <label id="R1" > </label > <br >
-        <label id="R2" > </label > <br >
-        <label id="R3" > </label > <br >
-        <label id="R4" > </label > <br >
-        <label id="R5" > </label > <br >
-        <label id="R6" > </label > <br >
-        </div >
-        </div >
-
-
-        <div class="col-sm-12 col-md-12 col-lg-6" >
-        <h2 style="text-align: center; font-weight: bold; margin-top:20px; margin-bottom:0px;" > Percentage</h2 >
-
-        <div id="myDiv1" style=" height: 400px; text-align: center " >
-
-        </div >
-
-        </div >
-
-
-        </div >
-        <br >
-        <!-- Size of the donut chart-->
-        <div class="row " >
-        <div class="col-sm-12 col-md-12  col-lg-6" style="text-align: left;padding-left: 50px;" >
-        <h2 style="text-align: center; font-weight: bold; margin-top:20px;margin-bottom:40px;" > Suggestion</h2 > <br >
-        <p id="output" > </p >
-        </div >
-
-        <div class="col-sm-12 col-md-12 col-lg-6" >
-            <h2 style="text-align: center; font-weight: bold; margin-top:20px;margin-bottom:0px;"> Comparison</h2>
-        <div id="myDiv2" style="height: 500px; " ><!-- Plotly chart will be drawn inside this DIV --> </div >
-        </div >
-
-        </div >
-        <div class="row" style=" text-align: center " >
-        <button class="btn btn-primary" onClick="printdiv('modal-content');" style="margin:auto;" > Print</button >
-
-        </div >
-
-        </div >
-        </div >
-
-
-
-        <div class="d-flex h-100 align-items-center" style=" background-image: url('../Assets/aaron-burden-dXYE1d08BiY-unsplash.jpg');
+    <div class="d-flex h-90 align-items-center" style="    text-align: left;    background-image: url('../Assets/landing.jpeg');
         background-position: center center;
         background-size: cover;
-        ">
-        <div class="container" >
-        <div class="row" >
-        <div class="col-md-7" style="" >
-        <h1 class="display-4" id="home_title" style="font-family: 'Komika Hand', sans-serif;" > <b> LET’S HELP THE WATER</b></h1>
-        <p class="text-white" style="font-size:larger; font-family: 'Raleway', sans-serif; " > Protecting water catchments is to protect ourselves as well as our family and friends! </p >
-        </div >
-        <div class="col-md-5" id="myformholder" style=" padding: 20px; background-color: white; color: black; border-radius: 10px; animation: fadeInRight 1s ease; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
-        <div class="" id="myform" >
+    " >
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" style="">
+                    <h1 class="display-4 col-sm-12" id="home_title" style="padding-left:2px;  position: relative; z-index: 2; font-size:3em; font-family:'Raleway', sans-serif; font-weight:600;   text-shadow: 2px 2px 4px #000000; "> PROTECT<br> OUR WATER CATCHMENTS</h1>
+                    <div class="col-lg-7  col-sm-12" style="color:white; font-family:'Raleway', sans-serif; font-size:1.2em; padding-left:2px;">
 
-        <h3 class=" font-weight-bold" style="margin-top:0px;" > How much water do you use per day?</h3 >
-        <div class="form-group" >
-        <label > How many times do you use the toilet in a day?</label >
-        <input class="form-control" style="height: 24px;" type="number" name="A1" id="A1" placeholder="Number of toilet use times" >
-
-
-        <label> How many times do you use the tap in a day?</label>
-        <input class="form-control" style="height: 24px;" type="number" name="A2" id="A2" placeholder="Number of tap use times" >
-
-
-
-        <label> How long do your showers last? (In minutes) </label>
-        <input class="form-control" style="height: 24px;" type="number" name="A3" id="A3" placeholder="The minutes of your shower" >
-        <label> How many times do you take a shower in a week?</label>
-        <input class="form-control" style="height: 24px;" type="number" name="A4" id="A4" placeholder="Number is required" / >
+                        <ul style="list-style-position: inside;padding: 5px; background-color:rgba(3,3,3,0.5)">
+                            <li>
+                                Around 1,690 cubic metres had been collected from Melbourne's water
+                                catchments between 2019 and 2020. it's equal more than half of an
+                                Olympic-sized swimming pool. Most of them are cigarette butts.
+                            </li>
+                            <li>
+                                Melbourne's population is growing rapidly. Climate change causes longer drier
+                                periods. These produce greater pressure to the water supplies. The storage
+                                water levels in Melbourne drops to 60%and continue going down each year.
+                                <br><span style="font-size:0.5em;">source:melbournewater.com.au</span>
+                            </li>
+                        </ul>
 
 
+                        <button type="submit" class="btn btn-primary" style="padding:8px;border:thin; border-style: solid; border-color:white; background-color:rgba(0,0,0,0)" onclick="location.href='#Water_Catchments'; ">Find out now</button>
 
-        <label> How long do you water your garden for?</label>
-        <input class="form-control" style="height: 24px;" type="number" name="A5" id="A5" placeholder="Number is required" >
+                    </div>
 
-        <label> How many times a week do you clean your pet?</label>
-        <input class="form-control" style="height: 24px;" type="number" name="A6" id="A6" placeholder="Number is required" >
-
-
-        </div >
+                </div>
+            </div>
 
 
+        </div>
+    </div>
 
-        <button type="submit" class="btn btn-primary" id="myBtn" onclick="myFunction()" style="" > Try it</button >
+    <div class="body-content container" id="Water_Catchments">
+        <div class="h-100 ">
 
-        </div >
+            <div class="row" style="margin: 0px; margin-bottom:60px;">
+                <p class="lead col-12" style="text-align: center;font-size: 30px; font-weight: 500; margin-top:40px;margin-bottom:0px; font-family:'Raleway', sans-serif;">
+                    Get to know our
+                </p>
+                <h2 class="col-12" style="font-size: xxx-large;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:#348172; margin:10px 0px; ">Water Catchments</h2>
 
-
-        </div >
-        </div >
-
-
-
-        </div >
-        </div >
-
-
-        <div class="py-5" style="background-color:rgb(229,229,229)" >
-        <div class="container" >
-        <div class="row" >
-
-        <div class="col-md-5 align-self-center" style="" >
-        <img class="img-fluid d-block w-100" style="height:90%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); animation: fadeInRight 1s ease;" src="~/Assets/elia-pellegrini-ds6t_pcigxg-unsplash.jpg" >
-
-        </div >
-
-        <div class="p-4 col-md-7" >
-        <div class="blockquote text-muted" >
-        <h2 style="font-size: xx-large;font-weight: bold;color:black; font-family:'Komika Hand', sans-serif; color:#348172;  " > WHAT ARE THE PROBLEMS OF OUR WATER CATCHMENTS?</h2 >
-
-
-        <ul style="list-style-position: inside; color:black;" >
-        <li > 88% of the ocean’s surface and 80% trash that floats to the ocean come from our land sources</li >
-        <li > The animals that live under sea or rivers will mistake plastics as their food? After they consume the plastics, it will affect humans through the food chain.</li >
-        <li > The water source on earth is limited and there are some places people cannot have access to clean and fresh water</li >
-        </ul >
-        <br >
-        <p class="lead " style="font-size: 21px; font-weight: bold; color:black" >
-        Take care of the water catchment - Take care of ourselves!
-        </p >
-        <button type="submit" class="btn btn-primary" onclick="location.href='/Home/MoreInfo';" style="" > Learn more</button >
-        </div >
-
-        </div >
-
-        </div >
-        </div >
-        </div >
-
-        <div class=" body-content" >
-        <div class="row" style="margin: 0px; margin-bottom:100px;" >
-            <h2 class="col-12" style="font-size: xx-large;font-weight: bold;color:black; text-align:center; font-family:'Komika Hand', sans-serif; color:#348172; margin:40px 0px; "> What can we do to protect our water catchments?</h2>
-
-        <p class="lead col-12" style="text-align: center;font-size: 21px; font-weight: 200; margin-bottom:80px;" > Here are the solutions which can help us reducing water pollution and water consumption</p >
-        <div class="col-12" style="padding:20px; text-align: center;" >
-
-        <div class="col-lg-2 col-md-2 col-sm-offset-0" > </div >
-
-
-        <div class="col-lg-4 col-md-6 col-sm-12" style="" >
-
-        <img class="col-12" src="~/Assets/jacek-dylag-Vve7XkiUq_Y-unsplash.jpg" style="padding:0; margin: 15px auto; width:290px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" / >
-        <div class="col-12" >
-        <button type="submit" class="btn btn-primary btn-home" onclick="location.href='/Tips';" style="padding: 7px 15px; margin: 10px 10px; font-size: x-large; font-weight:bold; border-radius: 15px;" > TIPS</button >
-        </div >
-        <div class="col-12" style="padding-left:30px;padding-right:30px;margin-top: 30px;" >
-        <p > Get to know the tips to save the water</p >
-        </div >
-        </div >
+                <p class="lead col-12" style="text-align: center;font-size: 30px; font-weight: 500; margin-bottom:50px; font-family:'Raleway', sans-serif;">
+                    "Water catchments are areas of land where water is collected and stored." <br>-<br>
+                    WaterNSW
+                </p>
+                <div class="col-12" style="padding:20px; text-align:center;">
 
 
 
-        <div class="col-lg-4 col-md-6 col-sm-12" >
 
-        <img class="col-12" src="~/Assets/mrjn-photography-YpZ2cj4s0oo-unsplash.jpg" style="padding: 0; margin: 15px auto; width: 290px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" / >
-        <div class="col-12" >
-        <button type="submit" class="btn btn-primary btn-home" onclick="location.href='/Home/Game';" style="padding: 7px 15px;  margin: 10px 10px; font-size: x-large; font-weight:bold;  border-radius: 15px;" > GAME</button >
-        </div >
-        <div class="col-12" style="padding-left:30px;padding-right:30px; margin-top: 30px;" >
-        <p >
-        Educational game on raising awareness of how we should cherish every drop of water
-        </p >
-        </div >
+                    <div class="col-lg-5 col-md-5 col-sm-12 equal-hight" id="tipswidget" style="">
+
+                        <div class="equal-hight" style=" margin: auto;">
+                            <h1 class="col-12 tipswidget_title" style="color:white; font-family: 'Quicksand', sans-serif;position:absolute; margin-top: 40%;  text-shadow: 2px 2px 4px #000000;">Water<br>Pollution </h1>
+                            <img src="~/Assets/water-1.jpg" style="width: 100%; padding: 0; margin: 15px auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
 
 
-        </div >
-        <div class="col-lg-2 col-md-2 col-sm-offset-0" > </div >
+                            <div class="overlay">
+                                <div class="text col-12" id="ts " style="font-family: 'Quicksand', sans-serif;">
+                                    Litter in the Yarra River is an ongoing problem, with up to 3 billion tonnes of waste (that's almost the weight of 499999998 elephants!) flushed into Melbourne's waterways each year.
+                                    <br><br><span style="font-size:0.8em; text-align:left; font-style:italic">source: melbourne.vic.gov.au</span> 
 
-        </div >
-        </div >
-        </div >
+                                    <div class="col-12" style="text-align: center; margin-top:10px">
+                                        <button type="submit" class="btn btn-primary" style=" padding: 7px 15px;" onclick="location.href='/Home/MoreInfo'; ">Learn More</button>
 
-        <div class="col-12" style="        background-image: url('../Assets/mid.jpg');
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1 col-sm-1"> </div>
+
+
+                    <div class="col-lg-5 col-md-5 col-sm-12 equal-hight" style="">
+
+                        <div class="equal-hight" style=" margin: auto;">
+                            <h1 class="col-12 tipswidget_title" style="color:white; font-family: 'Quicksand', sans-serif;position:absolute; margin-top: 40%;  text-shadow: 2px 2px 4px #000000;">Water<br>Consumption </h1>
+                            <img src="~/Assets/water-2.jpg" style="width: 100%; padding: 0; margin: 15px auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+
+
+                            <div class="overlay">
+                                <div class="text col-12" id="ts " style="font-family: 'Quicksand', sans-serif;">
+                                   Melbourne is in danger of running out of fresh water by 2050! Water use has increased by 10.7% a year over 
+                                    the past five years, while wate rstorage will decline annually from the current 60%.
+                                    <br><br><span style="font-size:0.8em; text-align:left; font-style:italic">source: melbournewater.com.au</span>
+
+                                    <div class="col-12" style="text-align: center;margin-top:10px">
+                                        <button type="submit" class="btn btn-primary" style=" padding: 7px 15px;" onclick="location.href='/Home/MoreInfo'; ">Learn More</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+                <div class="col-lg-12" style="margin-top:30px;text-align: center;">
+                    <button style="        background-image: url('../Assets/arrow-down.png');
+                         background-position: center center;
+                         background-size: cover;
+                         padding: 0px;
+                         height: 40px;
+                         width:40px;
+                         margin: auto auto;
+                         background-color: rgba(0,0,0,0);
+                         border: none;"
+                            onclick="location.href='#WaterSource'"> </button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class=" body-content"  id="WaterSource">
+        <div class="container">
+            <div class="row" style="margin: 0px; margin-bottom:60px;">
+                <h2 class="col-12" style="font-size: xxx-large;font-weight: bold;color:black; text-align:center; font-family: 'Quicksand', sans-serif; color:#000; margin:30px 0px; margin-bottom:10px;">Where water<br> comes and goes</h2>
+
+                <p class="lead col-12" style="text-align: center;font-size: 1.5em; font-weight: 400; margin-bottom: 0px; font-family: 'Quicksand', sans-serif;">
+                    Water goes on a long journey before it reaches our<br />
+                    home. Let's explore the water journey!
+                </p>
+
+                <div class="col-12" style="padding:20px; text-align: center;">
+
+                    <img src="~/Assets/waterflow.png" style="width: 100%; ">
+
+
+
+                </div>
+
+                <div class="col-12" style="text-align: center;margin-top:10px">
+                    <button type="submit" class="btn btn-primary" style=" padding: 7px 15px;" onclick="location.href='/Home/WaterJourney'; ">Learn More</button>
+
+                </div>
+                <div class="col-lg-12" style="margin-top:30px;text-align: center;">
+                    <button style="        background-image: url('../Assets/arrow-down.png');
+                         background-position: center center;
+                         background-size: cover;
+                         padding: 0px;
+                         height: 40px;
+                         width:40px;
+                         margin: auto auto;
+                         background-color: rgba(0,0,0,0);
+                         border: none;"
+                            onclick="location.href='#protect'"> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class=" body-content" style="background-color:gainsboro" id="protect">
+        <div class="container">
+            <div class="row" style="margin: 0px; margin-bottom:60px;">
+                <h2 class="col-12" style="font-size: xxx-large;font-weight: bold;color:black; text-align:center; font-family: 'Quicksand', sans-serif; color:#000; margin:30px 0px; margin-bottom:10px;"> How to protect<br> water catchments</h2>
+
+                <p class="lead col-12" style="text-align: center;font-size: 21px; font-weight: 300; margin-bottom: 0px; font-family: 'Quicksand', sans-serif;">Start from our home</p>
+                <p class=" col-12" style=" text-align: center; ">_____</p>
+                <div class="col-12" style="padding:20px; text-align: center;">
+
+                    <div class="col-lg-1 col-md-12 col-sm-offset-0"> </div>
+
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 " id="tipswidget2" style=" ">
+
+                        <img class="col-12" src="~/Assets/circle-cropped (1).png" style="padding:0; margin: 30px auto; width:290px;margin-bottom:30px; " />
+
+
+                        <div class="col-12" style="text-align: left;padding: 0;">
+                            <button type="submit" class="btn btn-primary btn-home" onclick="location.href='/Tips';" style="font-family: 'Raleway', sans-serif; padding: 1px 15px; font-size: x-large; font-weight: bold; border-radius: 5px;"> TIPS</button>
+                        </div>
+                        <div class="col-12 box-shadow" style="background-color:white; border-radius: 5px; padding:10px;">
+                            <p style="line-height: 30px; font-size: 2em; font-family: 'Quicksand', sans-serif; padding-top: 10px; font-weight: bolder;">Replace Plastics<br>Reuse Water</p>
+                            <p style="font-size: 1.3em; font-family: 'Quicksand', sans-serif; "> Get to know the tips to<br>save the water</p>
+                            <p style="font-size: 1.3em; font-family: 'Quicksand', sans-serif; padding-bottom:16px; ">Multiple efficient ways to reuse water</p>
+                            <button type="submit" class="btn btn-primary" style="border:none;" onclick="location.href='/Tips'; ">Learn more</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-12 col-sm-offset-0"> </div>
+
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+
+                        <img class="col-12" src="~/Assets/circle-cropped.png" style="padding: 0; margin: 30px auto; width: 290px; margin-bottom:30px;" />
+                        <div class="col-12" style="text-align: left;padding: 0;">
+                            <button type="submit" class="btn btn-primary btn-home" onclick="location.href='/Home/Calculator';" style="font-family: 'Raleway', sans-serif; padding: 1px 5px; font-size: x-large; font-weight: bold; border-radius: 5px;">CALCULATOR</button>
+                        </div>
+                        <div class="col-12 box-shadow" style="background-color:white; border-radius: 5px; padding:10px;">
+                            <p style="line-height: 30px; font-size: 1.8em; font-family: 'Quicksand', sans-serif; padding-top: 10px; font-weight: bolder;">Monitor Daily Water Usage</p>
+                            <p style="font-size: 1.3em; font-family: 'Quicksand', sans-serif; padding: 16px 0px ;">155L per day becomes easier to achieve than ever!</p>
+                            <p  class="tooltip1" style="font-size: 1.3em; font-family: 'Quicksand', sans-serif; padding-bottom:16px;color:#b98962; cursor: pointer;"  > > About Target155<span class="tooltiptext">"Target 155 is a water efficiency program
+encouraging Melburnians to limit water
+consumption to 155 litres per person per
+day."
+<span style="font-size:0.7em;"> water.vic.gov.au</span></span></p>
+                            
+                            <button type="submit" class="btn btn-primary" style="border:none;" onclick="location.href='/Home/Calculator'; ">Learn more</button>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-lg-1 col-md-1 col-sm-offset-0"> </div>
+
+                </div>
+                <div class="col-lg-12" style="margin-top:30px;text-align: center;">
+                    <button style="        background-image: url('../Assets/arrow-down.png');
+                         background-position: center center;
+                         background-size: cover;
+                         padding: 0px;
+                         height: 40px;
+                         width:40px;
+                         margin: auto auto;
+                         background-color: rgba(0,0,0,0);
+                         border: none;"
+                            onclick="location.href='#RELAX_TIME'"> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12" style="        background-image: url('../Assets/river-background-band.jpg');
         background-position: center center;
         background-size: cover;
         padding: 0px;
-        height: 50%;">
-
-        <div class="col-12" style="background-color:rgba(45,45,45,0.3); width:100%; height:100%;" >
-        <div class="row" style="width:100%;" >
-        <div class="p-4 col-lg-8" style="color:white;" >
-        <div class="container" id="midband" >
-        <h2 class="col-12" style="font-weight: revert; font-size: xx-large; padding-top: 50px;" > Together we can become water savers!<br > Small actions can make a huge impact.<br > <p > ______________</p > </h2 >
-
-        </div >
-        </div >
-
-        </div >
-        </div >
-        </div >
-
-
-        <div class=" body-content" >
-        <div class="row" style="margin: 0px; margin-bottom:100px;" >
-        <h2 class="col-12" style="font-size: xx-large;font-weight: bold;color:black; text-align:center; font-family:'Komika Hand', sans-serif; color:#348172; margin:40px auto;  " > TEST YOUR KNOWLEDGE</h2 >
-
-        <p class="lead col-12" style="text-align: center;font-size: 21px; font-weight: 200;" > Try the quiz below to test your<br > knowledge</p >
-        <div class="col-12" style="padding:20px; text-align: center;" >
-
-        <div class="col-12" style="text-align:center" >
-        <div class="" id="icon" style="width:256px; height:256px;    margin: 30px auto;" > </div >
-        <button type="submit" class="btn btn-primary" onclick="location.href='/Home/Quiz';" style="padding: 7px 15px;  margin: 10px 10px; font-size: x-large; font-weight:bold; " > Start Quiz</button >
-        </div >
-
-
-        </div >
-        </div >
-        </div >
-
-        <div class="py-1" style="background-color:rgb(229,229,229)" >
-    
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" > </script >
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" > </script >
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" > </script >
-
-
-
-
-        <div class="row" style="margin: 0px; margin-bottom:100px; text-align:center;" >
-        <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2" >
-
-        <h2 class="col-12" style="font-size: xx-large;font-weight: bold; margin:50px auto; color:black; text-align:center; font-family:'Komika Hand', sans-serif; color:#348172 " > VIDEOS</h2 >
-        <!-- Water Consumption -->
-        <p style="font-size: 21px; font-weight: 200; text-align:center; margin-bottom:30px;" > Visite our video page to watch more videos about the water catchments</p >
-        <!-- Carousel section 1 -->
-        <div id="carousel-section-1" class="carousel slide" data-ride="false" >
-        <ol class="carousel-indicators" >
-        <li data-target="#carousel-section-1" data-slide-to="0" class="active" > </li >
-        <li data-target="#carousel-section-1" data-slide-to="1" > </li >
-        <!-- <li data-target="#carousel-section-1" data-slide-to="2" > </li > -->
-        </ol >
-        <div class="carousel-inner" >
-        <div class="carousel-item active" >
-        <div class="embed-responsive embed-responsive-16by9" >
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/wjF8tux0Azg"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen >
-        </iframe >
-        </div >
-        </div >
-        <div class="carousel-item" >
-        <div class="embed-responsive embed-responsive-16by9" >
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/1pWChv7u0UU"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen >
-        </iframe >
-        </div >
-        </div >
-        </div >
-        <a class="carousel-control-prev" href="#carousel-section-1" role="button" data-slide="prev" style="height: 26%; top: 40%; border-radius: 100px;" >
-        <span class="carousel-control-prev-icon" aria-hidden="true" > </span >
-        <span class="sr-only" > Previous</span >
-        </a >
-        <a class="carousel-control-next" href="#carousel-section-1" role="button" data-slide="next" style="height: 26%; top: 40%; border-radius: 100px;" >
-        <span class="carousel-control-next-icon" aria-hidden="true" > </span >
-        <span class="sr-only" > Next</span >
-        </a >
-        </div >
-
-        <div style="text-align: right; font-size: 12px;  margin:20px auto; opacity: 0.7" > Videos from Melbourne Water</div >
-        <!-- End Carousel section 1 -->
-        <div class="col-12" style="text-align: center;" >
-        <button type="submit" class="btn btn-primary" onclick="location.href='/Home/Video'; " > More Videos</button >
-        </div >
-
-        </div >
-        </div >
-        </div >
-
-
-        <!-- this is the script for calculator -->
-        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js" > </script >
-        <script src='https://cdn.plot.ly/plotly-latest.min.js' > </script >
-
-        <script type="text/javascript" >
-
-        function myFunction1() {
-            //Define and calculate the percentage of water used for each part 
-            var a1 = document.getElementById("A1");
-            var a2 = document.getElementById("A2");
-            var a3 = document.getElementById("A3");
-            var a4 = document.getElementById("A4");
-            var a5 = document.getElementById("A5");
-            var a6 = document.getElementById("A6");
-            var toilet = (a1.value) * 3.83;
-            var tap = (a2.value) * 2.2925;
-            var shower = (a3.value) * (a4.value) * 11.43 / 7;
-            var gardon = (a5.value) * 15 / 7;
-            var pet = (a6.value) * 50 / 7;
-            var outdoor = parseInt(gardon + pet);
-            var total = toilet + tap + shower + gardon + pet;
-            var n1 = toilet.toFixed(2);
-            var n2 = tap.toFixed(2);
-            var n3 = shower.toFixed(2);
-            var n4 = gardon.toFixed(2);
-            var n5 = pet.toFixed(2);
-            var p1 = parseInt(toilet / total * 100);
-            var p2 = parseInt(tap / total * 100);
-            var p3 = parseInt(shower / total * 100);
-            var p4 = parseInt(gardon / total * 100);
-            var p5 = parseInt(pet / total * 100);
-            var bodywidth = document.body.clientWidth;
-            var chartwidth = bodywidth / 1.9;
-            if (bodywidth <= 414)
-
-        {
-            chartwidth = bodywidth / 1.2;
-        }
-
-        if (bodywidth >= 1200) {
-            chartwidth = bodywidth / 2.8;
-        }
-
-        console.log(bodywidth);
-        console.log(chartwidth);
-        var config = {
-            responsive: true, displayModeBar: false, displaylogo: false
-        }
-
-
-        var datapie = [ {
-            values: [toilet, tap, shower, outdoor], labels: ['Toilet', 'Tap', 'Shower', 'Outdoor'], type: 'pie', hole: .6,
-        }
-
-        ];
-
-        var layoutpie = {
-            height: 400, width: chartwidth
-        }
-
-        ;
-
-        Plotly.newPlot('myDiv1', datapie, layoutpie, config);
-
-
-        var bar1 = {
-            y: [toilet, tap, shower, outdoor, total], x: ['Toilet', 'Tap', 'Shower', 'Outdoor', 'Total'], name: 'Your usage', type: 'bar', orientation: 'v'
-        }
-
-        ;
-
-        var bar2 = {
-            y: [20, 18, 80, 37, 155], x: ['Toilet', 'Tap', 'Shower', 'Outdoor', 'Total'], name: 'Recommended', type: 'bar', orientation: 'v'
-        }
-
-        ;
-
-        var data = [bar2, bar1];
-
-
-        var layout = {
-            barmode: 'group', width: chartwidth,
-        };
-
-        Plotly.newPlot('myDiv2', data, layout, config);
-            }
-
-        </script >
-        <script >
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-
-        // Get the <span > element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal
-        btn.onclick = function () {
-            if (isNotANumber() == true)
-        {
-            myFunction();
-            modal .style.display = "block";
-        }
-        }
-
-        // When the user clicks on <span > (x), close the modal
-        span.onclick = function () {
-            modal .style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal)
-
-        {
-            modal .style.display = "none";
-        }
-
-        }
-
-        //Calculation function
-        function myFunction() {
-            myFunction1();
-            var a1 = document.getElementById("A1");
-            var a2 = document.getElementById("A2");
-            var a3 = document.getElementById("A3");
-            var a4 = document.getElementById("A4");
-            var a5 = document.getElementById("A5");
-            var a6 = document.getElementById("A6");
-            var toilet = (a1.value) * 3.83;
-            var tap = (a2.value) * 2.2925;
-            var shower = (a3.value) * (a4.value) * 11.43 / 7;
-            var gardon = (a5.value) * 15 / 7;
-            var pet = (a6.value) * 50 / 7;
-            var total = (a1.value) * 3.83 + (a2.value) * 2.2925 + (a3.value) * (a4.value) * 11.43 / 7 + ((a5.value) * 15 / 7) + ((a6.value) * 50 / 7);
-            var inputOne = total;
-            var inputTwo = 155;
-            var result;
-            //a.value = toilet.toFixed(2) + " L";
-            document .getElementById("R1").innerHTML = "Toilet water consumption: " + toilet.toFixed(2) + " L";
-            document .getElementById("R2").innerHTML = "Tap water consumption: " + tap.toFixed(2) + " L";
-            document .getElementById("R3").innerHTML = "Shower water consumption: " + shower.toFixed(2) + " L";
-            document .getElementById("R4").innerHTML = "Garden water consumption: " + gardon.toFixed(2) + " L";
-            document .getElementById("R5").innerHTML = "Clean pet water consumption: " + pet.toFixed(2) + " L";
-            document .getElementById("R6").innerHTML = "Total daily water usage: " + total.toFixed(2) + " L";
-            //Determine whether the user's daily water consumption exceeds 155L 
-
-            if (inputOne <= inputTwo)
-        {
-            result = "Your total water usage per week is less than target 155L/day! <br>You have a good water habit, which effectively protects Melbourne’s Water catchment, please continue to maintain it. <br>For more detailed water saving tips, you can go to the Tip page.";
-            // document.getElementById("output").style.color = 'Green'
-        }
-
-        else {
-            result = "Your total water usage per week is bigger than target 155L/day! <br>Your water usage habits are bad. Please reduce your daily water consumption for Melbourne's Water catchment. <br>According to your water usage habits, we recommend: <br>1. Use the toilet less than 5 times a day; <br>2. Turn off the faucet when brushing your teeth; <br>3. The best time for shower should be within 5 minutes; <br>4. Appropriately reduce garden water use, and choose resistant Dry planting; <br>5. Do not clean your pet too frequently. <br>For more detailed water saving tips, you can go to the Tip page.";
-            // document.getElementById("output").style.color = 'Red'
-        }
-
-        document.getElementById("output").innerHTML = result;
-        }
-
-
-        // Set the date we're counting down to
-        var countDownDate = new Date("Jan 5, 2050 16:47:25").getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function () {
-
-            // Get today's date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
-            var days = Math.floor((distance / (1000 * 60 * 60 * 24)) % 365);
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-            document.getElementById("demo").innerHTML = "Time left till run out of the fresh water of the world: " + years + "y " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-            // If the count down is over, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-
-
-        function isNotANumber() {
-            var a1 = document.getElementById("A1");
-            var a2 = document.getElementById("A2");
-            var a3 = document.getElementById("A3");
-            var a4 = document.getElementById("A4");
-            var a5 = document.getElementById("A5");
-            var a6 = document.getElementById("A6");
-            var list = [a1.value, a2.value, a3.value, a4.value, a5.value, a6.value];
-            var isnum = false;
-            var a = 0;
-            for (var i = 0; i <= list.length - 1; i++)
-        {
-            if (parseFloat(list[i]).toString() == "NaN")
-        {
-            alert('Please enter a number');
-            break;
-        }
-        else {
-            isnum = true;
-            a ++;
-        }
-        }
-
-        if (a === 6) {
-            return isnum;   } }
-
-
-        </script >
-
-
-        <script language="javascript" >
-        function printdiv(printpage) {
-            var mywindow = window.open();
-            mywindow .document.write('<html> <head> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <style>  .main-svg {position:absolute; left: 0;}  .svg-container{margin: auto auto; } .btn{display:none; } .close{display:none;} </style><title>Water Uaage Report</title>');
-            mywindow.document.write('</head><body > ');
-            mywindow.document.write('<h1></h1>');
-            mywindow.document.write(document.getElementById(printpage).innerHTML);
-            mywindow.document.write('</body></html>');
-            mywindow.document.close(); // necessary for IE >= 10
-            mywindow.focus(); // necessary for IE >= 10*/
-
-            mywindow.print();
-            setTimeout(function () { mywindow.close(); }, 400);
-          
-
-            return true;
-        }
-
-
-
-    </script>
+        height: 40%;">
+
+        <div class="col-12" style="background-color:rgba(45,45,45,0.3); width:100%; height:100%;">
+            <div class="row" style="width:100%;">
+                <div class="p-4 col-lg-8" style="color:white;">
+                    <div class="container" id="midband">
+                        <h2 class="col-12" id="midbandtext" style="font-family: 'Raleway', sans-serif; font-weight: revert; font-size: xx-large; padding-top: 50px;">Protecting water catchments is to protect ourselves as well as our family and friends<br>  </h2><h2 style="padding-left:20px;"> ______________</h2>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class=" body-content" id="RELAX_TIME">
+        <div class="row" style="margin: 0px; margin-bottom:100px;">
+            <p class="col-12" style="text-align:center;font-family: 'Quicksand', sans-serif; margin-top:80px; font-size: xx-large;">RELAX TIME</p>
+            <h2 class="col-12" style="font-size: xxx-large;font-weight: bold;color:black; text-align:center; font-family: 'Raleway', sans-serif; color:#333333; margin:40px auto; margin-top:0px; ">Test Your Knowledge<br><span style="color:lightgrey">and</span> Play a Game</h2>
+
+
+            <p class="lead col-12" style="text-align: center;font-size: 21px; font-weight: 200;">Because, Why not?</p>
+            <p class=" col-12" style="margin-bottom: 20px; text-align: center; ">_____</p>
+
+
+            <div class="col-12" style="padding:20px; text-align: center;">
+                <div class="col-lg-2h5 col-md-12 col-sm-12"> </div>
+
+                <div class="col-lg-3 col-md-12 col-sm-12" style="text-align:center">
+                    <div class="" id="icon" style="width:256px; height:256px;    margin: 25px auto; "> </div>
+                    <button type="submit" class="btn btn-primary btn-relax" onclick="location.href='/Home/Quiz';" style="padding: 7px 15px;  margin: 10px 10px; font-size: x-large; font-family: 'Raleway', sans-serif; "> Start Quiz</button>
+                    <p style="font-size:1.3em; font-family: 'Quicksand', sans-serif; padding: 16px 0px ;">
+                        Ready to be challenged? Try to<br>
+                        test your knowledge on water<br>
+                        catchment protection.<br>
+                        Hint: <span style="color:#3aa6dd; font-weight:bold">Tips</span> and <span style="color:#3aa6dd; font-weight:bold">Facts</span> will be<br>
+                        your best companions!
+                    </p>
+                </div>
+
+                <div class="col-lg-1 col-md-12 col-sm-12"> </div>
+
+                <div class="col-lg-3 col-md-12 col-sm-12" style="text-align:center">
+                    <div class="" style="width:245px; height:245px;    margin: 30px auto; background-image: url('../Assets/game.png');
+        background-position: center center;
+        background-size: cover;"> </div>
+                    <button type="submit" class="btn btn-primary btn-relax" onclick="location.href='/Home/Game';" style="padding: 7px 15px;  margin: 10px 10px; font-size: x-large;font-family: 'Raleway', sans-serif;  "> Play Game</button>
+
+                    <p style="font-size:1.3em; font-family: 'Quicksand', sans-serif; padding: 16px 0px ;">
+                        Relax your mind with a fun<br />
+                        mini-game.<br />
+                        Hint: Try to save as much water<br />
+                        as you can!
+
+                    </p>
+                </div>
+
+                <div class="col-lg-2h5 col-md-12 col-sm-12"> </div>
+            </div>
+
+
+            <div class="col-lg-12" style="margin-top:30px;text-align: center;">
+                <button style="        background-image: url('../Assets/arrow-down.png');
+                         background-position: center center;
+                         background-size: cover;
+                         padding: 0px;
+                         height: 40px;
+                         width:40px;
+                         margin: auto auto;
+                         background-color: rgba(0,0,0,0);
+                         border: none;"
+                        onclick="location.href='#video'"> </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="py-1" style="background-color:rgb(229,229,229)">
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+        <div class="row" style="margin: 0px; margin-bottom:100px; text-align:center;" id="video">
+            <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+
+                <h2 class="col-12" style="font-size: xxx-large;font-weight: bold;color:black; text-align:center; font-family: 'Raleway', sans-serif; color:#333333; margin:40px auto; margin-top:60px; "> VIDEOS</h2>
+                <!-- Water Consumption -->
+                <p style="font-size: 21px; font-weight: 200; text-align:center; margin-bottom:30px;">
+                    Get to know better about our water catchment<br />
+                    through videos
+                </p>
+                <!-- Carousel section 1 -->
+                <div id="carousel-section-1" class="carousel slide" data-ride="false">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-section-1" data-slide-to="0" class="active"> </li>
+                        <li data-target="#carousel-section-1" data-slide-to="1"> </li>
+                        <!-- <li data-target="#carousel-section-1" data-slide-to="2" > </li > -->
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/wjF8tux0Azg"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/1pWChv7u0UU"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-section-1" role="button" data-slide="prev" style="height: 26%; top: 40%; border-radius: 100px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"> </span>
+                        <span class="sr-only"> Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-section-1" role="button" data-slide="next" style="height: 26%; top: 40%; border-radius: 100px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"> </span>
+                        <span class="sr-only"> Next</span>
+                    </a>
+                </div>
+
+                <div style="text-align: right; font-size: 12px;  margin:20px auto; opacity: 0.7"> Videos from Melbourne Water</div>
+                <!-- End Carousel section 1 -->
+                <div class="col-12" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary" onclick="location.href='/Home/Video'; "> More Videos</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 
 
 
