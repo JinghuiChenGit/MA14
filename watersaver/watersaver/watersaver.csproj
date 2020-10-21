@@ -171,6 +171,7 @@
     <Content Include="Assets\circle-cropped %281%29.png" />
     <Content Include="Assets\circle-cropped.png" />
     <Content Include="Assets\clock.png" />
+    <Content Include="Assets\comsumption.jpeg" />
     <Content Include="Assets\correct.png" />
     <Content Include="Assets\creek.jpg" />
     <Content Include="Assets\dropcount.jpg" />
@@ -179,6 +180,10 @@
     <Content Include="Assets\glass.png" />
     <Content Include="Assets\iconquiz.png" />
     <Content Include="Assets\image-asset.jpeg" />
+    <Content Include="Assets\image12.png" />
+    <Content Include="Assets\image14.png" />
+    <Content Include="Assets\image4.png" />
+    <Content Include="Assets\image8.png" />
     <Content Include="Assets\jacek-dylag-Vve7XkiUq_Y-unsplash.jpg" />
     <Content Include="Assets\Jinghui_Selfie.png" />
     <Content Include="Assets\landing.jpeg" />
@@ -190,15 +195,20 @@
     <Content Include="Assets\mid2.jpg" />
     <Content Include="Assets\mrjn-photography-YpZ2cj4s0oo-unsplash.jpg" />
     <Content Include="Assets\nikola-radojcic-64Y-4cUlV4w-unsplash.jpg" />
+    <Content Include="Assets\penguin.png" />
     <Content Include="Assets\pet.png" />
     <Content Include="Assets\plastic.png" />
+    <Content Include="Assets\pollution.jpeg" />
     <Content Include="Assets\river-background-band.jpg" />
     <Content Include="Assets\river-background.jpg" />
+    <Content Include="Assets\river.jpg" />
     <Content Include="Assets\rocket.jpeg" />
     <Content Include="Assets\rocket.png" />
     <Content Include="Assets\shower.png" />
+    <Content Include="Assets\sun.png" />
     <Content Include="Assets\tap.png" />
     <Content Include="Assets\tapuserage.png" />
+    <Content Include="Assets\tipbanner.jpg" />
     <Content Include="Assets\toilet-paper.png" />
     <Content Include="Assets\video\img1.jpg" />
     <Content Include="Assets\video\img2.jpg" />
@@ -217,9 +227,12 @@
     <Content Include="Assets\water-2.jpg" />
     <Content Include="Assets\water-tap.png" />
     <Content Include="Assets\water.png" />
+    <Content Include="Assets\waterfalls.png" />
+    <Content Include="Assets\waterflow-mobile.png" />
     <Content Include="Assets\waterflow.png" />
     <Content Include="Assets\watering-plants.png" />
     <Content Include="Assets\waterstream.jpg" />
+    <Content Include="Assets\whale.png" />
     <Content Include="Assets\wrong.png" />
     <Content Include="Content\aos.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -333,6 +346,9 @@
     <Content Include="Views\Home\Video.cshtml" />
     <Content Include="Views\Home\Calculator.cshtml" />
     <Content Include="Views\Home\WaterJourney.cshtml" />
+    <Content Include="Views\Home\Pullotion.cshtml" />
+    <Content Include="Views\Home\Pollution.cshtml" />
+    <Content Include="Views\Home\Reference.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,11 +1,32 @@
 ﻿@charset "UTF-8";
 
+
+html {
+    scroll-behavior: smooth;
+}
+
+
 .pricingTable {
     margin: 20px auto;
     padding: 20px 0;
     border-bottom: 1.5px solid #ebedec;
 }
 
+.tipsrow {
+    padding: 0px 60px;
+}
+
+
+#waterflowver {
+    display: none;
+}
+
+.tipicon {
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, 140%);
+    z-index: 99;
+}
 
 .pricingTable-firstTable {
     list-style: none;
@@ -293,7 +314,7 @@
 
 
     #home_title {
-        font-size: 3.5rem;
+        font-size: 3rem;
         color: white;
     }
 
@@ -383,4 +404,41 @@
     .tooltip1 .tooltiptext {
         transform: translate(-79%, 19%);
     }
+    #Landing {
+    display:none !important;
+    }
+
+    .jbtn {
+        text-align: center !important;
+    }
+
+
+    .jtitle {
+    font-size:1em !important;
+    }
+
+    .maptitle {
+        text-align:center !important;
+    }
+
+    #waterflowver {
+    display:block;
+    }
+    #waterflowho {
+    display:none;
+    }
+
+    .tipicon {
+
+        transform: translate(-40%, 100%);
+
+    }
+
+    .tipsrow {
+        padding: 0px 10px;
+    }
+    .graph-space {
+        margin-left: 60px;
+    }
+
     }

@@ -53,15 +53,13 @@
 
 
         #mapframe {
-
             padding: 0px 280px;
         }
 
 
 
         #mapframe2 {
-
-            padding:82px;
+            padding: 82px;
         }
     </style>
 
@@ -80,6 +78,7 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="~/Scripts/jQuery.print.js"></script>
+
 
 
     <!-- Font stylesheet -->
@@ -209,6 +208,41 @@
         html {
             scroll-behavior: smooth;
         }
+
+        #map {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 500px;
+            border-radius: 5px;
+            transform: translate(-0%, -23%);
+        }
+
+        .map-overlay {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.8);
+            margin-left: 50px;
+            font-family: 'Quicksand', sans-serif;
+            overflow: auto;
+            border-radius: 5px;
+            z-index: 1;
+          
+        }
+
+        #features {
+            top: 0;
+            height: 100px;
+            margin-top: 20px;
+            width: 220px;
+        }
+
+        #pd p {
+            margin: 0px;
+            font-size: 1em;
+        }
     </style>
 
 
@@ -224,8 +258,7 @@
 
         <div class="col-12" style="background-color:rgba(45,45,45,0.3); width:100%; height:100%;">
             <div class="row">
-                <div class="p-4 col-lg-8" style="color:white;">
-                </div>
+
 
             </div>
         </div>
@@ -238,7 +271,7 @@
     <div class="body-content container" id="Water_Catchments">
         <div class="h-100 ">
 
-            <div class="row" style="margin: 0px; margin:60px; margin-bottom:0px;">
+            <div class="row" style=" margin:60px 10px; margin-bottom:0px;">
                 <h2 class="col-12" style="font-size: 2.5em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:#333333; margin:10px 0px; ">WHERE WATER COMES AND GOES</h2>
 
                 <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 50px; font-family: 'Quicksand', sans-serif;">
@@ -246,40 +279,38 @@
                     water comes from and where water goes after<br>
                     it 's used from your household!
                 </p>
-                <div class="col-12" style="padding:20px; text-align:center;">
-                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: right;margin-top:10px">
-                        <button type="submit" class="btn btn-primary" style="font-family: 'Raleway', sans-serif;font-weight: bold; padding: 7px 60px; background-color: rgb(237,203,175); color: #333333" onclick="location.href='#watermap'; ">Maps</button>
+                <div class="row" style="padding:20px; text-align:center; ">
+                    <div class="col-lg-6 col-md-6 col-sm-6 jbtn" style="text-align: center;margin-top:10px">
+                      
 
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: left;margin-top:10px">
-                        <button type="submit" class="btn btn-primary" style="font-family: 'Raleway', sans-serif;font-weight: bold; padding: 7px 15px; background-color: rgb(237,203,175); color: #333333" onclick="location.href='#MoreInformation'; ">More Information</button>
 
-                    </div>
 
 
                 </div>
 
-                <div class="col-lg-6" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 30px auto; border-radius:5px;">Explore the Water Journey</div>
+                <div class="col-lg-6 jtitle" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 30px auto; border-radius:5px;">Explore the Water Journey</div>
 
             </div>
 
 
         </div>
     </div>
+    <div class="body-content container">
+        <div class="col-12" style="padding: 0px 0px; text-align: center; " id="flow">
 
-    <div class="col-12" style=" text-align: center; " id="flow">
+            <img id="waterflowho" src="~/Assets/waterflow.png" style="width: 100%; ">
+            <img id="waterflowver" src="~/Assets/waterflow-mobile.png" style="width: 100%; " />
+        </div>
 
-        <img src="~/Assets/waterflow.png" style="width: 100%; ">
 
 
+        <div class="body-content container" id="Water_Catchments">
+            <div class="h-100 ">
 
-    </div>
+                <div class="row" style="margin:30px auto;">
 
-    <div class="body-content container" id="Water_Catchments">
-        <div class="h-100 ">
-
-            <div class="row" style="margin: 0px; margin:60px; margin-bottom:0px;">
-
+                </div>
 
                 <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
                     Water in the <b>Melbourne</b> region comes from <b>protected catchments</b> that are stored in <b>reservoirs</b>
@@ -296,116 +327,288 @@
                 </p>
 
             </div>
-            <div class="row" style="margin: 0px; margin:60px; margin-bottom:0px;">
 
+            <div class="row" style="margin: 0px; margin:30px; margin-bottom:0px;">
 
-                <div class="col-lg-6" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 30px auto; border-radius:5px;">
-                    Explore Melbournre's water
-                    catchment and storage maps
+                <div class="col-lg-6 jtitle" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; margin: 30px auto; border-radius:5px;">
+                    <button type="submit" class="btn btn-primary " style="font-family: 'Raleway', sans-serif;font-weight: bold; padding: 7px 60px; background-color: rgb(237,203,175); color: #333333" onclick="location.href='#watermap'; ">See Map</button>
                 </div>
 
-                <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 50px; font-family: 'Quicksand', sans-serif;">
-                    The Maps shows locat ions of Water<br>
-                    Catchment and Water Storage in<br>
-                    the area around Melbourne
-                </p>
 
-                <h2 class="col-12" style="font-size: x-large;font-weight: bold;color:black; text-align:left; font-family: 'Quicksand', sans-serif; color:#000; margin:30px 0px; " id="watermap">Water Catchment Map</h2>
+
+            </div>
+
+            <div class="row" style="margin: 0px; margin:70px; margin-bottom:0px; text-align:center;">
+
+
+                <div class="col-lg-6 jtitle" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 20px auto; border-radius:5px; margin-bottom:50px;">
+                    Explore Melbourne's water
+                    catchment and storage map
+                </div>
+            </div>
+            <div class="row" style="margin: 0px; margin:0px; margin-bottom:0px; text-align:center;">
+                <div class="col-lg-5 jtitle" style="font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif;  margin: 0px auto; border-radius:5px;">
+                    <p class="" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 20px; font-family: 'Quicksand', sans-serif;">
+                        The map shows locations of Water
+                        Catchment and Water Storage in the
+                        area around Melbourne.
+                    </p>
+                </div>
+            </div>
+            <div class="row" style="margin: 0px; margin:0px; margin-bottom:0px; text-align:center;">
+                <div class="col-lg-5 jtitle" style="font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif;  margin: 0px auto; border-radius:5px;">
+                    <p class="" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 20px; font-family: 'Quicksand', sans-serif;">
+                        The areas coloured represent water
+                        catchment locations.
+                    </p>
+                </div>
+            </div>
+            <div class="row" style="margin: 0px; margin:0px; margin-bottom:0px; text-align:center;">
+                <div class="col-lg-5 jtitle" style="font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif;  margin: 0px auto; border-radius:5px;">
+                    <p class="" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 20px; font-family: 'Quicksand', sans-serif;">
+                        Hover the circles to see water storage
+                        facilities with capacity number and
+                        area supplied.
+                    </p>
+                </div>
+                </div>
+
+
+
             </div>
 
         </div>
-    </div>
+       
 
-    <div class="row" style="margin: 0px;  margin-bottom:0px;" id="mapframe">
+    <div class="body-content container" style="margin-bottom: 100px;">
+        <div class="row" style="margin: 0px; margin-bottom:0px; ">
 
-        <div id='map' style='width: 100%; height: 500px;'></div>
+            <h2 class="col-12 maptitle" style="font-size: x-large;font-weight: bold;color:black; text-align:left; font-family: 'Quicksand', sans-serif; color:#000; margin:30px 0px; " id="watermap">Water Catchment Map</h2>
+            <div style="width: 100%; height: 500px; padding: 0 12px;">
+
+                <div class='map-overlay shadow' id='features' style="text-align: center;">
+                    <div style="font-family: 'Quicksand', sans-serif; padding: 10px 0px;">Water catchment:</div>
+                    <div id='pd' ></div>
+
+
+                </div>
+
+                <div class="shadow" id='map'></div>
+
+            </div>
+
+
+            </div>
 
 
 
 
-    </div>
 
-    <div class="body-content container" id="mapframe2">
-        <h2 class="col-12" style="font-size: x-large;font-weight: bold;color:black; text-align:left; font-family: 'Quicksand', sans-serif; color:#000; margin:30px 0px; " id="watermap">Water Storage Map</h2>
-        <div class='tableauPlaceholder' id='viz1602398410061' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;XG&#47;XGNW296Y5&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;XGNW296Y5' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;XG&#47;XGNW296Y5&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' /><param name='filter' value='publish=yes' /></object></div>
-        <script type='text/javascript'>var divElement = document.getElementById('viz1602398410061'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '777px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
-    </div>
+        </div>
+   
 
-        <div class=" body-content" id="protect">
-            <div class="container">
-                <div class="row" style="margin: 0px; margin-bottom:60px;">
 
-                    <div class="col-lg-4" style="font-size: 2em;font-weight: bold;color:black; text-align:center; font-family:'Raleway', sans-serif; color:rgb(58,166,221);  border:solid; margin: 30px auto; border-radius:5px; margin-top:100px;" id="MoreInformation">
-                        Did you know?
-                    </div>
 
-                    <p class="lead col-12" style="text-align: center; font-size: 23px; font-weight: 500;line-height:20px; margin-bottom: 50px; font-family: 'Quicksand', sans-serif;">
-                        Explanation on Water Journey
-                    </p>
-                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
-                        <b>Fresh water</b><br>
-                        Fresh water has a long journey to make before it enters your home. Water in the Melbourne region comes
-                        from protected catchments, which are stored in reservoirs (large natural or man-made water storage facilities,
-                        usually created by building dams on rivers).
-                        There are two types of reservoirs:
+    <div class="" style="background-color: gainsboro">
+        <div class="container" style="padding-top:20px;">
 
-                    </p>
+            <div class="row" style="text-align:center;">
+                <div class="col-lg-12">
+                    <img src="~/Assets/waterfalls.png" style="width:60px;" />
+                    <p style="font-family: 'Quicksand', sans-serif; font-weight:bold; font-size:1.2em;">Read tips about ways to reduce plastics and water usage</p>
+                    <button type="submit" class="btn btn-primary" style="font-weight:bold; padding:5px 10px ; font-family: 'Quicksand', sans-serif; background-color:dodgerblue" onclick="location.href='/Tips'; ">Go to Tips</button>
 
-                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
-                        - On-stream reservoirs, where rainfall across Melbourne's water catchments drive the amount of water that
-                        flows into these reservoirs.
-                    </p>
-                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
-                        - Off-stream reservoirs, where water is transferred from on-stream reservoirs or other sources: for example,
-                        Sugarloaf Reservoir, In addition, they have been able to access the North-South Pipeline, which can receive
-                        water from the North-South Pipeline.
-                    </p>
-                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
-                        The water leaves the reservoir and enters the drinking water treatment plant for coagulation, clarification,
-                        filtration, disinfection, fluoridation and pH correction prior to entering the water supply system. The Melbourne
-                        area is primarily covered by the Winneke Water Treatment Plant and the Tarago Water Treatment Plant, with
-                        the Cardinia Reservoir also receiving desalinated water from the Victoria Desalination Plant in Wantage. The
-                        plant extracts seawater from Bass Strait and converts it into potable water through a series of processes
-                        including filtration, reverse osmosis, disinfection and fluoridation.
-                    </p>
-                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
-                        Tested fresh water travels through large pipes to 38 smaller water facilities, where the water company
-                        distributes it to your home's water mains, at which point its journey comes to an end for now.
-                    </p>
-                    <p class="lead col-12" style="text-align: left; font-size: 23px; font-weight: 400; line-height: 30px; margin-bottom: 50px; font-family: 'Raleway', sans-serif;">
-                        <b>Sewage</b><br>
-                        Only three quarters of domestic sewage is collected in sewage treatment plants and treated sewage is only
-                        discharged into rivers and oceans if it meets discharge standards. Yet 5% of the water is lost in the process. Did you know? Of the water used in Melbourne each year, 95 per cent is wastewater, or sewage. Currently,
-                        only 1.5 per cent, or 266 million litres, of wastewater is recycled.
-                    </p>
+                </div>
 
+
+            </div>
+
+            <div class="row" style="text-align:center;">
+                <div class="col-lg-12">
+                    <img src="~/Assets/whale.png" style="width:60px;" />
+                    <p style="font-family: 'Quicksand', sans-serif; font-weight:bold; font-size:1.2em;">Test your knowledge on protecting water catchments</p>
+                    <button type="submit" class="btn btn-primary" style="font-weight:bold; padding:5px 10px ; font-family: 'Quicksand', sans-serif; background-color:dodgerblue" onclick="location.href='/Home/Quiz'; ">Start Quiz</button>
+
+                </div>
+
+
+            </div>
+
+            <div class="row" style="text-align:center; margin-top:20px;">
+                <div class="col-lg-12">
+                    <img src="~/Assets/penguin.png" style="width:60px;" />
+                    <p style="font-family: 'Quicksand', sans-serif; font-weight:bold; font-size:1.2em;">Calculate your daily water usage</p>
+                    <button type="submit" class="btn btn-primary" style="font-weight:bold; padding:5px 10px ; font-family: 'Quicksand', sans-serif; background-color:dodgerblue" onclick="location.href='/Home/Calculator'; ">Try Calculator</button>
+
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-12" style="text-align: right; margin:50px 0px;">
+                    <button type="submit" class="btn btn-primary" onclick="location.href='/'; ">Back to Home</button>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
 
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 
-        <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoidGlhbnFpaHVhbmciLCJhIjoiY2tmNWlpenF0MDlnZzMxcXJ5MGFjcGdqdiJ9.Pso8CSdKIqG6c4f3AYkZHg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/tianqihuang/ckga5tusr0fq81apr4lr6r0vk', // stylesheet location
+            center: [145.338, -38.061], // starting position [lng, lat]
+            zoom: 8 // starting zoom
+        });
 
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoidGlhbnFpaHVhbmciLCJhIjoiY2tmNWlpenF0MDlnZzMxcXJ5MGFjcGdqdiJ9.Pso8CSdKIqG6c4f3AYkZHg';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/tianqihuang/ckg4qgsj023rx19pl8w9gwkuq', // stylesheet location
-                center: [145.338, -38.061], // starting position [lng, lat]
-                zoom: 8 // starting zoom
+        map.on('load', function () {
+
+            map.addSource('catchment', {
+                'type': 'vector',
+                'url': 'mapbox://tianqihuang.6yekm48f'
             });
-        </script>
+            map.addLayer({
+                'id': 'CM-highlight',
+                'type': 'fill',
+                'source': 'catchment',
+                'source-layer': 'Catchments_-_Major_River_Basi-6rqvnl',
+                'paint': {
+                    'fill-color': '#FFF1D0',
+                    'fill-opacity': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        0.55,
+                        0
+                    ]
+                }
+            });
+
+            map.addSource('storages', {
+                'type': 'vector',
+                'url': 'mapbox://tianqihuang.ckgbptxao01pe2anr3goou97y-3yky4'
+            });
+
+            map.addLayer(
+                {
+                    'id': 'storage',
+                    'type': 'circle',
+                    'source': 'storages',
+                    'source-layer': 'Water_storage_areav2',
+                    'paint': {
+                        'circle-radius':
+                            [
+                                'interpolate', ['linear'],
+                                ['get', 'Capacity'],
+                                1, 10,
+                                50, 15,
+                                100, 20,
+                                300, 25,
+                                1000, 40
+
+
+                            ],
+                        'circle-opacity': 0.6,
+                        'circle-stroke-color': '#000',
+                        'circle-stroke-width': 1,
+                        'circle-color': [
+                            'interpolate', ['linear'],
+                            ['get', 'ID'],
+                            1, '#ffafcc',
+                            2, '#9bf6ff',
+                            3, '#d00000',
+                            4, '#6930c3',
+                            5, '#ffba08',
+                            6, '#06d6a0',
+                            7, '#d100d1',
+                            8, '#f8961e',
+                            9, '#90be6d',
+                            10, '#ffff3f'
+                        ]
+                    }
+
+                });
+
+            var popup = new mapboxgl.Popup({
+                closeButton: false
+            });
+
+            var hsid = null
+
+
+            //Water storage
+            map.on('mousemove', 'storage', function (e) {
+
+                map.getCanvas().style.cursor = 'pointer';
+
+                var feature = e.features[0];
+
+
+                popup
+                    .setLngLat(e.lngLat)
+                    .setHTML('Water Storage Name: ' + feature.properties.MXUNITID + '<br>Capacity(billion litres): ' + feature.properties.Capacity + '<br>Area Supplied: ' + feature.properties.Supplyid)
+                    .addTo(map);
+            });
+
+            map.on('mouseleave', 'storage', function () {
+                map.getCanvas().style.cursor = '';
+                popup.remove();
+            });
+
+            //Water catchment
+            map.on('mousemove', 'CM-highlight', function (e) {
+                if (e.features.length > 0) {
+                    if (hsid) {
+                        map.setFeatureState(
+                            { source: 'catchment', sourceLayer: 'Catchments_-_Major_River_Basi-6rqvnl', id: hsid },
+                            { hover: false }
+                        );
+                    }
+                    hsid = e.features[0].id;
+                    map.setFeatureState(
+                        { source: 'catchment', sourceLayer: 'Catchments_-_Major_River_Basi-6rqvnl', id: hsid },
+                        { hover: true }
+                    );
+                }
+            });
+
+            map.on('mouseleave', 'CM-highlight', function () {
+                if (hsid) {
+                    map.setFeatureState(
+                        { source: 'catchment', sourceLayer: 'Catchments_-_Major_River_Basi-6rqvnl', id: hsid },
+                        { hover: false }
+                    );
+                }
+                hsid = null;
+            });
+
+            map.on('mousemove', function (e) {
+                var watercatement = map.queryRenderedFeatures(e.point, {
+                    layers: ['catchments-major-river-basi-6rqvnl']
+                });
+
+                if (watercatement.length > 0) {
+                    document.getElementById('pd').innerHTML = '<p><strong>' + watercatement[0].properties.MXUNITID
+                } else {
+                    document.getElementById('pd').innerHTML = '<p></p>';
+                }
+            });
+        });
+
+    </script>
 
 
 
 
 
 
-        @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery")
 </body>
 

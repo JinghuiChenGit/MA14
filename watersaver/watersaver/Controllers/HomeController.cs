@@ -80,11 +80,31 @@ namespace watersaver.Controllers
 
         }
 
+        public ActionResult Pollution()
+        {
+
+            ViewBag.Message = "Pollution page.";
+
+            return View();
+
+
+        }
+
 
         public ActionResult Video()
         {
 
             ViewBag.Message = "video page.";
+
+            return View();
+
+
+        }
+
+        public ActionResult Reference()
+        {
+
+            ViewBag.Message = "Reference page.";
 
             return View();
 

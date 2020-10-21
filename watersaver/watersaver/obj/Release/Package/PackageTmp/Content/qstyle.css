@@ -58,7 +58,7 @@ html, body {
     margin-bottom: 10px;
     line-height: 22px;
     color: #000000;
-    font-weight: 400;
+    font-weight: 500;
 }
 
     .home-box p span {
@@ -105,14 +105,14 @@ html, body {
     font-size: 22px;
     color: #000000;
     line-height: 26px;
-    font-weight: 400;
+    font-weight: 500;
     padding: 10px 0;
 }
 
 .quiz-box .option-container {
     color: #000000;
     line-height: 28px;
-    font-weight: 400;
+    font-weight: 500;
     padding: 20px 0;
     margin: 0;
 }
@@ -256,7 +256,7 @@ html, body {
         .result-box table td {
             border: 1px solid #cccccc;
             padding: 8px 15px;
-            font-weight: 600;
+            font-weight: 700;
             color: #000000;
             width: 50%;
             text-align: left;
